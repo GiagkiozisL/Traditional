@@ -1,7 +1,8 @@
 
 #import "TGMainViewController.h"
-#import "TGMapViewController.h"
 #import "TGSideMenuViewController.h"
+#import "TGMapViewController.h"
+#import "ControlVariables.h"
 #import "MainTableViewCell.h"
 
 @interface TGMainViewController ()
@@ -10,59 +11,32 @@
 
 @implementation TGMainViewController
 
+#pragma - UIViewController
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.navigationItem.title = @"Main View";
+    self.title = @"Main View";
     self.view.backgroundColor = [UIColor grayColor];
-    
-    UIBarButtonItem *menuItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"burgerIcon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(openSideMenu)];
+    UIBarButtonItem *menuItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"burgerIcon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(openButtonPressed)];
     UIBarButtonItem *mapItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(openMap)];
     self.navigationItem.leftBarButtonItem = menuItem;
     self.navigationItem.rightBarButtonItem = mapItem;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)openMap {
+    TGMapViewController *mapController = [[TGMapViewController alloc]init];
+    [self.navigationController pushViewController:mapController animated:YES];
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
-    return [self.objects count];
+- (void)openButtonPressed {
+    [self.sideMenuViewController openMenuAnimated:YES completion:nil];
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView
-        cellForRowAtIndexPath:(NSIndexPath *)indexPath
-                       object:(PFObject *)object {
-    
-    static NSString *mainTableIdentifier = @"MainTableViewCell";
-    
-    MainTableViewCell *cell = (MainTableViewCell *)[tableView dequeueReusableCellWithIdentifier:mainTableIdentifier];
-    if (cell == nil)
-    {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"MainTableViewCell" owner:self options:nil];
-        cell = [nib objectAtIndex:0];
-    }
-    
-    cell.houseNameLabel.text = object[@"name"];
-    cell.areaLabel.text = object [@"area"];
-    cell.streetLabel.text = object [@"municipality"];
-    
-    return cell;
-}
+#pragma mark - UITableViewDelegate & UITableViewDataSource
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 299.0;
-}
-
-#pragma mark - PFQueryTableViewController
-
--(PFQuery *)queryForTable {
+- (PFQuery *)queryForTable {
     
     PFQuery *query = [PFQuery queryWithClassName:@"Venues"];
     if (self.objects.count == 0) {
@@ -72,15 +46,31 @@
     return query;
 }
 
-#pragma mark - IBActions
-
--(void)openSideMenu {
-    
-    [self.sideMenuViewController openMenuAnimated:YES completion:nil];
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.objects count];
 }
 
--(void)openMap {
-    
-    //go to map controller
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
+            object:(PFObject *)object{
+    static NSString *simpleTableIdentifier = @"MainTableViewCell";
+    MainTableViewCell *cell = (MainTableViewCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    if (cell == nil)
+    {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"MainTableViewCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+   
+   cell.houseNameLabel.text = object [@"name"];
+    cell.areaLabel.text = object [@"area"];
+   cell.priceLabel.text = object [@"price"];
+    cell.streetLabel.text = object [@"municipality"];
+
+    return cell;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 299.0;
+}
+
 @end

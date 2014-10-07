@@ -90,7 +90,7 @@
         <image name="profile-stats-bg.png" width="320" height="70"/>
         <image name="spring-w.png" width="30" height="30"/>
         <image name="star-g.png" width="30" height="30"/>
-        <image name="star-y.png" width="580" height="414"/>
+        <image name="star-y.png" width="30" height="30"/>
         <image name="summer-w.png" width="30" height="30"/>
         <image name="winter-w.png" width="30" height="30"/>
     </resources>

@@ -4,31 +4,34 @@
 #import "TGSideMenuViewController.h"
 #import "TGMenuViewController.h"
 
+
 @interface AppDelegate ()
 
 @property (nonatomic, strong) TGMainViewController *mainViewController;
-@property (nonatomic, strong) TGSideMenuViewController *sideViewController;
+@property (nonatomic, strong) TGSideMenuViewController *sideMenuViewController;
 @property (nonatomic, strong) TGMenuViewController *menuViewController;
 
 @end
 
 @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
     [Parse setApplicationId:@"JX2BdnyXPIvbRZiW8DBFR0aoek9OQMd6JYDQ6lZJ"
                   clientKey:@"pX35j0Gmy9w7v3dZ6vuLIseNM8UifulIC9n9XYox"];
     
-    self.mainViewController = [[TGMainViewController alloc]initWithNibName:nil bundle:nil];
-    self.menuViewController = [[TGMenuViewController alloc]initWithNibName:nil bundle:nil];
+    self.menuViewController = [[TGMenuViewController alloc] initWithNibName:nil bundle:nil];
+    self.mainViewController = [[TGMainViewController alloc] initWithNibName:nil bundle:nil];
     
-    self.sideViewController = [[TGSideMenuViewController alloc] initWithMenuViewController:self.menuViewController mainViewController:self.mainViewController];
-    self.sideViewController.shadowColor = [UIColor blackColor];
-    self.sideViewController.edgeOffset = (UIOffset) { .horizontal = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 8.0f : 0.0f };
-    self.sideViewController.edgeOffset = (UIOffset) { .vertical = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? -60.0f : 0.0f };
-    self.sideViewController.zoomScale = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 0.5634f : 0.85f;
-    self.window.rootViewController = self.sideViewController;
+    self.sideMenuViewController = [[TGSideMenuViewController alloc] initWithMenuViewController:self.menuViewController mainViewController:[[UINavigationController alloc] initWithRootViewController:self.mainViewController]];
+    self.sideMenuViewController.shadowColor = [UIColor blackColor];
+    self.sideMenuViewController.edgeOffset = (UIOffset) { .horizontal = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 8.0f : 0.0f };
+    self.sideMenuViewController.edgeOffset = (UIOffset) { .vertical = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? -60.0f : 0.0f };
+    self.sideMenuViewController.zoomScale = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 0.5634f : 0.85f;
+    self.window.rootViewController = self.sideMenuViewController;
     return YES;
 }
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -102,7 +105,6 @@
     
     return _persistentStoreCoordinator;
 }
-
 
 - (NSManagedObjectContext *)managedObjectContext {
     // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)

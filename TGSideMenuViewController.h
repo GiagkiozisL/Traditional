@@ -1,10 +1,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class TGMenuViewController;
+@class TGSideMenuViewController;
 
 @interface TGSideMenuViewController : UIViewController
 
+/** Time interval for opening and closing the side menu */
 @property (nonatomic, assign) NSTimeInterval animationDuration;
 
 /** Is the menu currently open? */
@@ -67,7 +68,7 @@
 
 @interface UIViewController (TWTSideMenuViewController)
 
-@property (nonatomic, weak)TGSideMenuViewController *sideMenuViewController;
-
+@property (nonatomic, weak) TGSideMenuViewController *sideMenuViewController;
 
 @end
+

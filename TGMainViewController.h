@@ -1,7 +1,6 @@
 
-#import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
-@interface TGMainViewController : PFQueryTableViewController <UITableViewDataSource,UITableViewDelegate>
+@interface TGMainViewController : PFQueryTableViewController <UITableViewDelegate,UITableViewDataSource>
 
 @end

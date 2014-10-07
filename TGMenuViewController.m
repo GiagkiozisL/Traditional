@@ -1,11 +1,12 @@
 
 #import "TGMenuViewController.h"
+#import "TGMainViewController.h"
+#import "TGLoginViewController.h"
+#import "TGSideMenuViewController.h"
 #import "TGMapViewController.h"
 
 @interface TGMenuViewController ()
-
-@property (nonatomic, strong) UIImageView *backgroundImageView;
-
+@property (nonatomic,strong) UIImageView *backgroundImageView;
 @end
 
 @implementation TGMenuViewController
@@ -15,7 +16,7 @@
     
     self.view.backgroundColor = [UIColor grayColor];
     
-    self.backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"6portrait.png"]];
+    self.backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background"]];
     self.backgroundImageView.translatesAutoresizingMaskIntoConstraints = NO;
     
     CGRect imageViewRect = [[UIScreen mainScreen] bounds];
@@ -39,7 +40,7 @@
     //draw menu item #2
     UIButton *menuItem2 = [UIButton buttonWithType:UIButtonTypeSystem];
     menuItem2.frame = CGRectMake(-40.0f, 200.0f, 200.0f, 44.0f);
-    [menuItem2 setTitle:@"Map" forState:UIControlStateNormal];
+    [menuItem2 setTitle:@"Favorites" forState:UIControlStateNormal];
     [menuItem2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [menuItem2 addTarget:self action:@selector(menuItem2Pressed) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:menuItem2];
@@ -47,7 +48,7 @@
     //draw menu item #3
     UIButton *menuItem3 = [UIButton buttonWithType:UIButtonTypeSystem];
     menuItem3.frame = CGRectMake(-40.0f, 300.0f, 200.0f, 44.0f);
-    [menuItem3 setTitle:@"Favorites" forState:UIControlStateNormal];
+    [menuItem3 setTitle:@"Map" forState:UIControlStateNormal];
     [menuItem3 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [menuItem3 addTarget:self action:@selector(menuItem3Pressed) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:menuItem3];
@@ -71,24 +72,24 @@
 
 -(void)menuItem3Pressed {
 //    TGMapViewController *mapController = [[TGMapViewController alloc]init];
-//    [self.sideViewController setMainViewController:mapController animated:YES closeMenu:YES];
+//    [self.sideMenuViewController setMainViewController:mapController animated:YES closeMenu:YES];
 }
-//
+
 -(void)menuItem2Pressed {
-//    UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:[DTLoginViewController new]];
-//    [self.sideViewController setMainViewController:controller animated:YES closeMenu:YES];
+//    UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:[TGLoginViewController new]];
+//    [self.sideMenuViewController setMainViewController:controller animated:YES closeMenu:YES];
 }
-//
+
 -(void)menuItem1Pressed {
-//    DTLoginViewController *secondViewController =
+//    TGLoginViewController *secondViewController =
 //    [self.storyboard instantiateViewControllerWithIdentifier:@"secondViewController"];
 //    [self.navigationController pushViewController:secondViewController animated:YES];
 }
-//
+
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
-//
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
 //    if ([segue.identifier isEqualToString:@"mapView"]) {
 //        TGMapViewController *mapController = (TGMapViewController*)segue.destinationViewController;

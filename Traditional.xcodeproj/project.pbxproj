@@ -23,10 +23,6 @@
 		4525EA9519E3CC8D0009BADE /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4525EA9219E3CC8D0009BADE /* ParseFacebookUtils.framework */; };
 		4525EA9719E3CCAD0009BADE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4525EA9619E3CCAD0009BADE /* UIKit.framework */; };
 		4525EA9919E3CCBB0009BADE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4525EA9819E3CCBB0009BADE /* Security.framework */; };
-		4525EA9D19E3CE050009BADE /* TGMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4525EA9C19E3CE050009BADE /* TGMainViewController.m */; };
-		4525EAA019E3CEA30009BADE /* TGSideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4525EA9F19E3CEA30009BADE /* TGSideMenuViewController.m */; };
-		4525EAA319E3CF440009BADE /* TGMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4525EAA219E3CF440009BADE /* TGMenuViewController.m */; };
-		4525EAA619E3D39F0009BADE /* TGMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4525EAA519E3D39F0009BADE /* TGMapViewController.m */; };
 		4525EAA919E3D4BF0009BADE /* 6portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 4525EAA819E3D4BF0009BADE /* 6portrait.png */; };
 		4525EAAB19E3D73E0009BADE /* burgerIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4525EAAA19E3D73E0009BADE /* burgerIcon.png */; };
 		4525EAB019E3D9980009BADE /* MainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4525EAAE19E3D9980009BADE /* MainTableViewCell.m */; };
@@ -57,6 +53,13 @@
 		4525EAE119E3E2580009BADE /* star-y@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4525EADF19E3E2580009BADE /* star-y@2x.png */; };
 		4525EAE319E3E3B80009BADE /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4525EAE219E3E3B80009BADE /* Default@2x.png */; };
 		4525EAE519E3E3F60009BADE /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4525EAE419E3E3F60009BADE /* logo.png */; };
+		4525EAE719E4282E0009BADE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4525EAE619E4282E0009BADE /* QuartzCore.framework */; };
+		4525EAE919E4286C0009BADE /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4525EAE819E4286C0009BADE /* libz.1.1.3.dylib */; };
+		4525EAF419E42D3D0009BADE /* TGMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4525EAEB19E42D3D0009BADE /* TGMenuViewController.m */; };
+		4525EAF519E42D3D0009BADE /* TGSideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4525EAED19E42D3D0009BADE /* TGSideMenuViewController.m */; };
+		4525EAF619E42D3D0009BADE /* TGMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4525EAEF19E42D3D0009BADE /* TGMainViewController.m */; };
+		4525EAF719E42D3D0009BADE /* TGMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4525EAF119E42D3D0009BADE /* TGMapViewController.m */; };
+		4525EAF819E42D3D0009BADE /* TGLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4525EAF319E42D3D0009BADE /* TGLoginViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,14 +95,6 @@
 		4525EA9219E3CC8D0009BADE /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
 		4525EA9619E3CCAD0009BADE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4525EA9819E3CCBB0009BADE /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		4525EA9B19E3CE050009BADE /* TGMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGMainViewController.h; sourceTree = "<group>"; };
-		4525EA9C19E3CE050009BADE /* TGMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGMainViewController.m; sourceTree = "<group>"; };
-		4525EA9E19E3CEA30009BADE /* TGSideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGSideMenuViewController.h; sourceTree = "<group>"; };
-		4525EA9F19E3CEA30009BADE /* TGSideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGSideMenuViewController.m; sourceTree = "<group>"; };
-		4525EAA119E3CF440009BADE /* TGMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGMenuViewController.h; sourceTree = "<group>"; };
-		4525EAA219E3CF440009BADE /* TGMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGMenuViewController.m; sourceTree = "<group>"; };
-		4525EAA419E3D39F0009BADE /* TGMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGMapViewController.h; sourceTree = "<group>"; };
-		4525EAA519E3D39F0009BADE /* TGMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGMapViewController.m; sourceTree = "<group>"; };
 		4525EAA819E3D4BF0009BADE /* 6portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6portrait.png; sourceTree = "<group>"; };
 		4525EAAA19E3D73E0009BADE /* burgerIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = burgerIcon.png; sourceTree = "<group>"; };
 		4525EAAD19E3D9980009BADE /* MainTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTableViewCell.h; sourceTree = "<group>"; };
@@ -131,6 +126,19 @@
 		4525EADF19E3E2580009BADE /* star-y@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-y@2x.png"; sourceTree = "<group>"; };
 		4525EAE219E3E3B80009BADE /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		4525EAE419E3E3F60009BADE /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		4525EAE619E4282E0009BADE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		4525EAE819E4286C0009BADE /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
+		4525EAEA19E42D3D0009BADE /* TGMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGMenuViewController.h; sourceTree = "<group>"; };
+		4525EAEB19E42D3D0009BADE /* TGMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGMenuViewController.m; sourceTree = "<group>"; };
+		4525EAEC19E42D3D0009BADE /* TGSideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGSideMenuViewController.h; sourceTree = "<group>"; };
+		4525EAED19E42D3D0009BADE /* TGSideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGSideMenuViewController.m; sourceTree = "<group>"; };
+		4525EAEE19E42D3D0009BADE /* TGMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGMainViewController.h; sourceTree = "<group>"; };
+		4525EAEF19E42D3D0009BADE /* TGMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGMainViewController.m; sourceTree = "<group>"; };
+		4525EAF019E42D3D0009BADE /* TGMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGMapViewController.h; sourceTree = "<group>"; };
+		4525EAF119E42D3D0009BADE /* TGMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGMapViewController.m; sourceTree = "<group>"; };
+		4525EAF219E42D3D0009BADE /* TGLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGLoginViewController.h; sourceTree = "<group>"; };
+		4525EAF319E42D3D0009BADE /* TGLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGLoginViewController.m; sourceTree = "<group>"; };
+		4525EAF919E42D790009BADE /* ControlVariables.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ControlVariables.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +146,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4525EAE919E4286C0009BADE /* libz.1.1.3.dylib in Frameworks */,
+				4525EAE719E4282E0009BADE /* QuartzCore.framework in Frameworks */,
 				4525EADD19E3DF5E0009BADE /* SystemConfiguration.framework in Frameworks */,
 				4525EADB19E3DEE60009BADE /* CFNetwork.framework in Frameworks */,
 				4525EA9919E3CCBB0009BADE /* Security.framework in Frameworks */,
@@ -164,12 +174,9 @@
 		4525EA5219E3C9AB0009BADE = {
 			isa = PBXGroup;
 			children = (
-				4525EAAC19E3D9730009BADE /* TableViewCellls */,
-				4525EAA719E3D4B10009BADE /* Images */,
-				4525EA8919E3CC290009BADE /* Frameworks */,
-				4525EA9A19E3CDB50009BADE /* Controllers */,
 				4525EA5D19E3C9AB0009BADE /* Traditional */,
 				4525EA7A19E3C9AB0009BADE /* TraditionalTests */,
+				4525EA8919E3CC290009BADE /* Frameworks */,
 				4525EA5C19E3C9AB0009BADE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -186,6 +193,9 @@
 		4525EA5D19E3C9AB0009BADE /* Traditional */ = {
 			isa = PBXGroup;
 			children = (
+				4525EAAC19E3D9730009BADE /* TableViewCellls */,
+				4525EAA719E3D4B10009BADE /* Images */,
+				4525EA9A19E3CDB50009BADE /* Controllers */,
 				4525EA6219E3C9AB0009BADE /* AppDelegate.h */,
 				4525EA6319E3C9AB0009BADE /* AppDelegate.m */,
 				4525EA6819E3C9AB0009BADE /* ViewController.h */,
@@ -195,6 +205,7 @@
 				4525EA7019E3C9AB0009BADE /* LaunchScreen.xib */,
 				4525EA6519E3C9AB0009BADE /* Traditional.xcdatamodeld */,
 				4525EA5E19E3C9AB0009BADE /* Supporting Files */,
+				4525EAF919E42D790009BADE /* ControlVariables.h */,
 			);
 			path = Traditional;
 			sourceTree = "<group>";
@@ -228,6 +239,8 @@
 		4525EA8919E3CC290009BADE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4525EAE819E4286C0009BADE /* libz.1.1.3.dylib */,
+				4525EAE619E4282E0009BADE /* QuartzCore.framework */,
 				4525EADC19E3DF5E0009BADE /* SystemConfiguration.framework */,
 				4525EADA19E3DEE60009BADE /* CFNetwork.framework */,
 				4525EA9819E3CCBB0009BADE /* Security.framework */,
@@ -245,16 +258,19 @@
 		4525EA9A19E3CDB50009BADE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4525EA9B19E3CE050009BADE /* TGMainViewController.h */,
-				4525EA9C19E3CE050009BADE /* TGMainViewController.m */,
-				4525EA9E19E3CEA30009BADE /* TGSideMenuViewController.h */,
-				4525EA9F19E3CEA30009BADE /* TGSideMenuViewController.m */,
-				4525EAA119E3CF440009BADE /* TGMenuViewController.h */,
-				4525EAA219E3CF440009BADE /* TGMenuViewController.m */,
-				4525EAA419E3D39F0009BADE /* TGMapViewController.h */,
-				4525EAA519E3D39F0009BADE /* TGMapViewController.m */,
+				4525EAEA19E42D3D0009BADE /* TGMenuViewController.h */,
+				4525EAEB19E42D3D0009BADE /* TGMenuViewController.m */,
+				4525EAEC19E42D3D0009BADE /* TGSideMenuViewController.h */,
+				4525EAED19E42D3D0009BADE /* TGSideMenuViewController.m */,
+				4525EAEE19E42D3D0009BADE /* TGMainViewController.h */,
+				4525EAEF19E42D3D0009BADE /* TGMainViewController.m */,
+				4525EAF019E42D3D0009BADE /* TGMapViewController.h */,
+				4525EAF119E42D3D0009BADE /* TGMapViewController.m */,
+				4525EAF219E42D3D0009BADE /* TGLoginViewController.h */,
+				4525EAF319E42D3D0009BADE /* TGLoginViewController.m */,
 			);
 			name = Controllers;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		4525EAA719E3D4B10009BADE /* Images */ = {
@@ -288,6 +304,7 @@
 				4525EAA819E3D4BF0009BADE /* 6portrait.png */,
 			);
 			name = Images;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		4525EAAC19E3D9730009BADE /* TableViewCellls */ = {
@@ -298,6 +315,7 @@
 				4525EAAF19E3D9980009BADE /* MainTableViewCell.xib */,
 			);
 			name = TableViewCellls;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -427,15 +445,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4525EAA619E3D39F0009BADE /* TGMapViewController.m in Sources */,
 				4525EA6419E3C9AB0009BADE /* AppDelegate.m in Sources */,
-				4525EAA319E3CF440009BADE /* TGMenuViewController.m in Sources */,
+				4525EAF719E42D3D0009BADE /* TGMapViewController.m in Sources */,
+				4525EAF819E42D3D0009BADE /* TGLoginViewController.m in Sources */,
+				4525EAF519E42D3D0009BADE /* TGSideMenuViewController.m in Sources */,
 				4525EAB019E3D9980009BADE /* MainTableViewCell.m in Sources */,
-				4525EAA019E3CEA30009BADE /* TGSideMenuViewController.m in Sources */,
 				4525EA6119E3C9AB0009BADE /* main.m in Sources */,
 				4525EA6A19E3C9AB0009BADE /* ViewController.m in Sources */,
+				4525EAF419E42D3D0009BADE /* TGMenuViewController.m in Sources */,
+				4525EAF619E42D3D0009BADE /* TGMainViewController.m in Sources */,
 				4525EA6719E3C9AB0009BADE /* Traditional.xcdatamodeld in Sources */,
-				4525EA9D19E3CE050009BADE /* TGMainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
