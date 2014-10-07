@@ -1,22 +1,32 @@
-//
-//  AppDelegate.m
-//  Traditional
-//
-//  Created by Giagkiozis Louloudis on 10/7/14.
-//  Copyright (c) 2014 flowerapps. All rights reserved.
-//
 
 #import "AppDelegate.h"
+#import "TGMainViewController.h"
+#import "TGSideMenuViewController.h"
+#import "TGMenuViewController.h"
 
 @interface AppDelegate ()
+
+@property (nonatomic, strong) TGMainViewController *mainViewController;
+@property (nonatomic, strong) TGSideMenuViewController *sideViewController;
+@property (nonatomic, strong) TGMenuViewController *menuViewController;
 
 @end
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    [Parse setApplicationId:@"JX2BdnyXPIvbRZiW8DBFR0aoek9OQMd6JYDQ6lZJ"
+                  clientKey:@"pX35j0Gmy9w7v3dZ6vuLIseNM8UifulIC9n9XYox"];
+    
+    self.mainViewController = [[TGMainViewController alloc]initWithNibName:nil bundle:nil];
+    self.menuViewController = [[TGMenuViewController alloc]initWithNibName:nil bundle:nil];
+    
+    self.sideViewController = [[TGSideMenuViewController alloc] initWithMenuViewController:self.menuViewController mainViewController:self.mainViewController];
+    self.sideViewController.shadowColor = [UIColor blackColor];
+    self.sideViewController.edgeOffset = (UIOffset) { .horizontal = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 8.0f : 0.0f };
+    self.sideViewController.edgeOffset = (UIOffset) { .vertical = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? -60.0f : 0.0f };
+    self.sideViewController.zoomScale = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 0.5634f : 0.85f;
+    self.window.rootViewController = self.sideViewController;
     return YES;
 }
 
