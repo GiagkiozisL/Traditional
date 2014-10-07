@@ -1,4 +1,5 @@
 
+#import "TGWishListViewController.h"
 #import "TGMenuViewController.h"
 #import "TGMainViewController.h"
 #import "TGLoginViewController.h"
@@ -14,9 +15,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor grayColor];
-    
-    self.backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background"]];
+    self.backgroundImageView = [[UIImageView alloc] init];
     self.backgroundImageView.translatesAutoresizingMaskIntoConstraints = NO;
     
     CGRect imageViewRect = [[UIScreen mainScreen] bounds];
@@ -32,7 +31,7 @@
     //draw menu item #1
     UIButton *menuItem1 = [UIButton buttonWithType:UIButtonTypeSystem];
     menuItem1.frame = CGRectMake(-40.0f, 100.0f, 200.0f, 44.0f);
-    [menuItem1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [menuItem1 setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [menuItem1 setTitle:@"Home" forState:UIControlStateNormal];
     [menuItem1 addTarget:self action:@selector(menuItem1Pressed) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:menuItem1];
@@ -41,7 +40,7 @@
     UIButton *menuItem2 = [UIButton buttonWithType:UIButtonTypeSystem];
     menuItem2.frame = CGRectMake(-40.0f, 200.0f, 200.0f, 44.0f);
     [menuItem2 setTitle:@"Favorites" forState:UIControlStateNormal];
-    [menuItem2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [menuItem2 setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [menuItem2 addTarget:self action:@selector(menuItem2Pressed) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:menuItem2];
     
@@ -49,7 +48,7 @@
     UIButton *menuItem3 = [UIButton buttonWithType:UIButtonTypeSystem];
     menuItem3.frame = CGRectMake(-40.0f, 300.0f, 200.0f, 44.0f);
     [menuItem3 setTitle:@"Map" forState:UIControlStateNormal];
-    [menuItem3 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [menuItem3 setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [menuItem3 addTarget:self action:@selector(menuItem3Pressed) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:menuItem3];
     
@@ -57,45 +56,40 @@
     UIButton *menuItem4 = [UIButton buttonWithType:UIButtonTypeSystem];
     menuItem4.frame = CGRectMake(-40.0f, 400.0f, 200.0f, 44.0f);
     [menuItem4 setTitle:@"WishList" forState:UIControlStateNormal];
-    [menuItem4 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [menuItem4 setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [menuItem4 addTarget:self action:@selector(menuItem4Pressed) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:menuItem4];
     
 }
 
 -(void)menuItem4Pressed {
-    NSString * storyboardName = @"Main_iPhone";
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
-    UIViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"DTLoginViewController"];
-    [self presentViewController:vc animated:YES completion:nil];
+    
+    NSString * storyboardName = @"Main";
+    NSString * viewControllerID = @"wishList";
+    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
+    TGWishListViewController * controller = (TGWishListViewController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
+    [self.sideMenuViewController setMainViewController:controller animated:YES closeMenu:YES];
 }
 
 -(void)menuItem3Pressed {
-//    TGMapViewController *mapController = [[TGMapViewController alloc]init];
-//    [self.sideMenuViewController setMainViewController:mapController animated:YES closeMenu:YES];
+    TGLoginViewController *logInController = [[TGLoginViewController alloc]init];
+    [self.sideMenuViewController setMainViewController:logInController animated:YES closeMenu:YES];
 }
 
 -(void)menuItem2Pressed {
-//    UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:[TGLoginViewController new]];
-//    [self.sideMenuViewController setMainViewController:controller animated:YES closeMenu:YES];
+    UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:[TGLoginViewController new]];
+    [self.sideMenuViewController setMainViewController:controller animated:YES closeMenu:YES];
 }
 
 -(void)menuItem1Pressed {
-//    TGLoginViewController *secondViewController =
-//    [self.storyboard instantiateViewControllerWithIdentifier:@"secondViewController"];
-//    [self.navigationController pushViewController:secondViewController animated:YES];
+    
+    UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:[TGMainViewController new]];
+    [self.sideMenuViewController setMainViewController:controller animated:YES closeMenu:YES];
+    
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
-}
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-//    if ([segue.identifier isEqualToString:@"mapView"]) {
-//        TGMapViewController *mapController = (TGMapViewController*)segue.destinationViewController;
-//        
-//        
-//    }
 }
 
 @end

@@ -3,6 +3,7 @@
 #import "TGMainViewController.h"
 #import "TGSideMenuViewController.h"
 #import "TGMenuViewController.h"
+#import "TGWishListViewController.h"
 
 
 @interface AppDelegate ()
@@ -10,6 +11,7 @@
 @property (nonatomic, strong) TGMainViewController *mainViewController;
 @property (nonatomic, strong) TGSideMenuViewController *sideMenuViewController;
 @property (nonatomic, strong) TGMenuViewController *menuViewController;
+@property (nonatomic, strong) TGWishListViewController *wishListViewController;
 
 @end
 

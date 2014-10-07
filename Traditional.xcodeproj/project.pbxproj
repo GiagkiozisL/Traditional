@@ -59,7 +59,8 @@
 		4525EAF519E42D3D0009BADE /* TGSideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4525EAED19E42D3D0009BADE /* TGSideMenuViewController.m */; };
 		4525EAF619E42D3D0009BADE /* TGMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4525EAEF19E42D3D0009BADE /* TGMainViewController.m */; };
 		4525EAF719E42D3D0009BADE /* TGMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4525EAF119E42D3D0009BADE /* TGMapViewController.m */; };
-		4525EAF819E42D3D0009BADE /* TGLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4525EAF319E42D3D0009BADE /* TGLoginViewController.m */; };
+		452F9B1D19E47BC2009715CB /* TGLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 452F9B1C19E47BC2009715CB /* TGLoginViewController.m */; };
+		452F9B2219E48EF6009715CB /* TGWishListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 452F9B2119E48EF6009715CB /* TGWishListViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,9 +137,11 @@
 		4525EAEF19E42D3D0009BADE /* TGMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGMainViewController.m; sourceTree = "<group>"; };
 		4525EAF019E42D3D0009BADE /* TGMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGMapViewController.h; sourceTree = "<group>"; };
 		4525EAF119E42D3D0009BADE /* TGMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGMapViewController.m; sourceTree = "<group>"; };
-		4525EAF219E42D3D0009BADE /* TGLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGLoginViewController.h; sourceTree = "<group>"; };
-		4525EAF319E42D3D0009BADE /* TGLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGLoginViewController.m; sourceTree = "<group>"; };
 		4525EAF919E42D790009BADE /* ControlVariables.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ControlVariables.h; sourceTree = "<group>"; };
+		452F9B1B19E47BC2009715CB /* TGLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGLoginViewController.h; sourceTree = "<group>"; };
+		452F9B1C19E47BC2009715CB /* TGLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGLoginViewController.m; sourceTree = "<group>"; };
+		452F9B2019E48EF6009715CB /* TGWishListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGWishListViewController.h; sourceTree = "<group>"; };
+		452F9B2119E48EF6009715CB /* TGWishListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGWishListViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,8 +269,10 @@
 				4525EAEF19E42D3D0009BADE /* TGMainViewController.m */,
 				4525EAF019E42D3D0009BADE /* TGMapViewController.h */,
 				4525EAF119E42D3D0009BADE /* TGMapViewController.m */,
-				4525EAF219E42D3D0009BADE /* TGLoginViewController.h */,
-				4525EAF319E42D3D0009BADE /* TGLoginViewController.m */,
+				452F9B1B19E47BC2009715CB /* TGLoginViewController.h */,
+				452F9B1C19E47BC2009715CB /* TGLoginViewController.m */,
+				452F9B2019E48EF6009715CB /* TGWishListViewController.h */,
+				452F9B2119E48EF6009715CB /* TGWishListViewController.m */,
 			);
 			name = Controllers;
 			path = ..;
@@ -447,7 +452,6 @@
 			files = (
 				4525EA6419E3C9AB0009BADE /* AppDelegate.m in Sources */,
 				4525EAF719E42D3D0009BADE /* TGMapViewController.m in Sources */,
-				4525EAF819E42D3D0009BADE /* TGLoginViewController.m in Sources */,
 				4525EAF519E42D3D0009BADE /* TGSideMenuViewController.m in Sources */,
 				4525EAB019E3D9980009BADE /* MainTableViewCell.m in Sources */,
 				4525EA6119E3C9AB0009BADE /* main.m in Sources */,
@@ -455,6 +459,8 @@
 				4525EAF419E42D3D0009BADE /* TGMenuViewController.m in Sources */,
 				4525EAF619E42D3D0009BADE /* TGMainViewController.m in Sources */,
 				4525EA6719E3C9AB0009BADE /* Traditional.xcdatamodeld in Sources */,
+				452F9B1D19E47BC2009715CB /* TGLoginViewController.m in Sources */,
+				452F9B2219E48EF6009715CB /* TGWishListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -653,6 +659,7 @@
 				4525EA8319E3C9AB0009BADE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4525EA8419E3C9AB0009BADE /* Build configuration list for PBXNativeTarget "TraditionalTests" */ = {
 			isa = XCConfigurationList;
@@ -661,6 +668,7 @@
 				4525EA8619E3C9AB0009BADE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
