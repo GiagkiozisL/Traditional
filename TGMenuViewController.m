@@ -5,6 +5,7 @@
 #import "TGLoginViewController.h"
 #import "TGSideMenuViewController.h"
 #import "TGMapViewController.h"
+#import "TGFavoritesViewController.h"
 
 @interface TGMenuViewController ()
 @property (nonatomic,strong) UIImageView *backgroundImageView;
@@ -62,30 +63,33 @@
     
 }
 
+-(void)menuItem1Pressed {
+    UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:[TGMainViewController new]];
+    [self.sideMenuViewController setMainViewController:controller animated:YES closeMenu:YES];
+}
+
+-(void)menuItem2Pressed {
+    NSString *storyboardName = @"Main";
+    NSString *viewControllerID = @"favorites";
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
+    TGFavoritesViewController *favoritesController = (TGFavoritesViewController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
+    [self.sideMenuViewController setMainViewController:favoritesController animated:YES closeMenu:YES];
+}
+
+-(void)menuItem3Pressed {
+    NSString * storyboardName = @"Main";
+    NSString * viewControllerID = @"mapView";
+    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
+    TGMapViewController *mapController = (TGMapViewController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
+    [self.sideMenuViewController setMainViewController:mapController animated:YES closeMenu:YES];
+}
+
 -(void)menuItem4Pressed {
-    
     NSString * storyboardName = @"Main";
     NSString * viewControllerID = @"wishList";
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
     TGWishListViewController * controller = (TGWishListViewController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
     [self.sideMenuViewController setMainViewController:controller animated:YES closeMenu:YES];
-}
-
--(void)menuItem3Pressed {
-    TGLoginViewController *logInController = [[TGLoginViewController alloc]init];
-    [self.sideMenuViewController setMainViewController:logInController animated:YES closeMenu:YES];
-}
-
--(void)menuItem2Pressed {
-    UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:[TGLoginViewController new]];
-    [self.sideMenuViewController setMainViewController:controller animated:YES closeMenu:YES];
-}
-
--(void)menuItem1Pressed {
-    
-    UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:[TGMainViewController new]];
-    [self.sideMenuViewController setMainViewController:controller animated:YES closeMenu:YES];
-    
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

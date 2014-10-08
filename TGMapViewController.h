@@ -5,4 +5,5 @@
 
 @interface TGMapViewController : UIViewController <MKMapViewDelegate>
 
+@property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @end

@@ -1,31 +1,30 @@
 
-#import "TGMapViewController.h"
+#import "TGFavoritesViewController.h"
 #import "TGSideMenuViewController.h"
 
-@interface TGMapViewController ()
+@interface TGFavoritesViewController ()
 
 @end
 
-@implementation TGMapViewController 
-@synthesize mapView;
-
-#pragma mark - UIViewController
+@implementation TGFavoritesViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    mapView.delegate = self;
-    mapView.mapType = MKMapTypeSatellite;
-    UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, 44)];
+    
+    UINavigationBar *navBar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, 44)];
     navBar.backgroundColor = [UIColor whiteColor];
     
-    UINavigationItem *navItem = [[UINavigationItem alloc] init];
-    navItem.title = @"MapView";
-    
+    UINavigationItem *navItem = [[UINavigationItem alloc]init];
+    navItem.title = @"Favorites";
     UIBarButtonItem *menuItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"burgerIcon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(openButtonPressed)];
     navItem.leftBarButtonItem = menuItem;
     navBar.items = @[ navItem ];
     [self.view addSubview:navBar];
+}
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 -(void)openButtonPressed {

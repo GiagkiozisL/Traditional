@@ -18,8 +18,6 @@
     navItem.title = @"WishList";
     
     UIBarButtonItem *menuItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"burgerIcon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(openButtonPressed)];
-//    UIBarButtonItem *mapItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(openMap)];
- //   navItem.rightBarButtonItem = mapItem;
     navItem.leftBarButtonItem = menuItem;
     navBar.items = @[ navItem ];
     [self.view addSubview:navBar];
