@@ -1,4 +1,6 @@
 
+#import <ParseFacebookUtils/PFFacebookUtils.h>
+#import <FacebookSDK/FacebookSDK.h>
 #import "AppDelegate.h"
 #import "TGMainViewController.h"
 #import "TGSideMenuViewController.h"
@@ -21,16 +23,18 @@
 {
     [Parse setApplicationId:@"JX2BdnyXPIvbRZiW8DBFR0aoek9OQMd6JYDQ6lZJ"
                   clientKey:@"pX35j0Gmy9w7v3dZ6vuLIseNM8UifulIC9n9XYox"];
-    
+    [PFFacebookUtils initializeFacebook];
     self.menuViewController = [[TGMenuViewController alloc] initWithNibName:nil bundle:nil];
     self.mainViewController = [[TGMainViewController alloc] initWithNibName:nil bundle:nil];
     
     self.sideMenuViewController = [[TGSideMenuViewController alloc] initWithMenuViewController:self.menuViewController mainViewController:[[UINavigationController alloc] initWithRootViewController:self.mainViewController]];
     self.sideMenuViewController.shadowColor = [UIColor blackColor];
     self.sideMenuViewController.edgeOffset = (UIOffset) { .horizontal = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 8.0f : 0.0f };
-    self.sideMenuViewController.edgeOffset = (UIOffset) { .vertical = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? -60.0f : 0.0f };
+    self.sideMenuViewController.edgeOffset = (UIOffset) { .vertical = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? -30.0f : 0.0f };
     self.sideMenuViewController.zoomScale = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 0.5634f : 0.85f;
     self.window.rootViewController = self.sideMenuViewController;
+    
+    
     return YES;
 }
 
@@ -53,10 +57,20 @@
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
+- (BOOL) application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return [PFFacebookUtils handleOpenURL:url];
+}
+
 - (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    // Saves changes in the application's managed object context before the application terminates.
-    [self saveContext];
+    [[PFFacebookUtils session] close];
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    
+    return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
 }
 
 #pragma mark - Core Data stack

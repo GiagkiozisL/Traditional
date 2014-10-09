@@ -28,6 +28,9 @@
                         <state key="disabled" image="star-g.png"/>
                         <state key="selected" image="star-y.png"/>
                         <state key="highlighted" image="star-y.png"/>
+                        <connections>
+                            <action selector="makeFavorite:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="2ba-TS-SN9"/>
+                        </connections>
                     </button>
                     <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Area" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5xY-l2-kTR">
                         <rect key="frame" x="14" y="236" width="138" height="22"/>
