@@ -152,4 +152,15 @@
     }
 }
 
+-(NSArray*)getAllVenueRecords {
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]init];
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Venues" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entityDescription];
+    NSError *error;
+    
+    NSArray *fetchVenues = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    return fetchVenues;
+}
+
 @end

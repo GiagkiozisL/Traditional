@@ -71,6 +71,7 @@
 		45426FC719E54F4600EDB9E9 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45426FC619E54F4500EDB9E9 /* Social.framework */; };
 		45426FCB19E5517100EDB9E9 /* Comms.m in Sources */ = {isa = PBXBuildFile; fileRef = 45426FCA19E5517100EDB9E9 /* Comms.m */; };
 		45426FCE19E5561C00EDB9E9 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45426FCD19E5561C00EDB9E9 /* ParseFacebookUtils.framework */; };
+		45789C3B19E7D0B9006F1450 /* Venues.m in Sources */ = {isa = PBXBuildFile; fileRef = 45789C3A19E7D0B9006F1450 /* Venues.m */; };
 		45A2148F19E6853000352332 /* body.png in Resources */ = {isa = PBXBuildFile; fileRef = 45A2148E19E6853000352332 /* body.png */; };
 /* End PBXBuildFile section */
 
@@ -166,6 +167,8 @@
 		45426FC919E5517100EDB9E9 /* Comms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comms.h; sourceTree = "<group>"; };
 		45426FCA19E5517100EDB9E9 /* Comms.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comms.m; sourceTree = "<group>"; };
 		45426FCD19E5561C00EDB9E9 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
+		45789C3919E7D0B9006F1450 /* Venues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Venues.h; sourceTree = "<group>"; };
+		45789C3A19E7D0B9006F1450 /* Venues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Venues.m; sourceTree = "<group>"; };
 		45A2148E19E6853000352332 /* body.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = body.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -224,7 +227,7 @@
 		4525EA5D19E3C9AB0009BADE /* Traditional */ = {
 			isa = PBXGroup;
 			children = (
-				45426FC819E5515A00EDB9E9 /* NSObjects */,
+				45426FC819E5515A00EDB9E9 /* Model */,
 				45426C5419E539D500EDB9E9 /* UIView */,
 				45426C5319E52F0700EDB9E9 /* LogIn&&SignUp */,
 				4525EAAC19E3D9730009BADE /* TableViewCellls */,
@@ -381,13 +384,15 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		45426FC819E5515A00EDB9E9 /* NSObjects */ = {
+		45426FC819E5515A00EDB9E9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				45789C3919E7D0B9006F1450 /* Venues.h */,
+				45789C3A19E7D0B9006F1450 /* Venues.m */,
 				45426FC919E5517100EDB9E9 /* Comms.h */,
 				45426FCA19E5517100EDB9E9 /* Comms.m */,
 			);
-			name = NSObjects;
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -531,6 +536,7 @@
 				4525EA6A19E3C9AB0009BADE /* ViewController.m in Sources */,
 				4525EAF419E42D3D0009BADE /* TGMenuViewController.m in Sources */,
 				45426C5219E528F000EDB9E9 /* TGFavoritesViewController.m in Sources */,
+				45789C3B19E7D0B9006F1450 /* Venues.m in Sources */,
 				45426C5719E539FE00EDB9E9 /* ILTranslucentView.m in Sources */,
 				4525EAF619E42D3D0009BADE /* TGMainViewController.m in Sources */,
 				4525EA6719E3C9AB0009BADE /* Traditional.xcdatamodeld in Sources */,

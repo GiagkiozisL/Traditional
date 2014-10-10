@@ -1,15 +1,23 @@
 
 #import "TGMainViewController.h"
+#import "AppDelegate.h"
+#import "Venues.h"
 #import "TGSideMenuViewController.h"
 #import "TGMapViewController.h"
 #import "ControlVariables.h"
 #import "MainTableViewCell.h"
 
 @interface TGMainViewController ()
-
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @end
 
 @implementation TGMainViewController
+MainTableViewCell *cell;
+NSString *favrtBtnId;
+NSString *tempObjectId;
+UIButton *favoriteBtn;
+
+bool isFav = false;
 
 #pragma - UIViewController
 
@@ -23,6 +31,9 @@
     UIBarButtonItem *mapItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(openMap)];
     self.navigationItem.leftBarButtonItem = menuItem;
     self.navigationItem.rightBarButtonItem = mapItem;
+    
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    self.managedObjectContext = appDelegate.managedObjectContext;
 }
 
 -(void)openMap {
@@ -32,6 +43,38 @@
 
 - (void)openButtonPressed {
     [self.sideMenuViewController openMenuAnimated:YES completion:nil];
+}
+
+-(void)menuPressed {
+    
+    [favoriteBtn setBackgroundImage:[UIImage imageNamed:@"star-y.png"] forState:UIControlStateNormal];
+    
+    if (isFav) {
+        [favoriteBtn setBackgroundImage:[UIImage imageNamed:@"star-g.png"] forState:UIControlStateNormal];
+        isFav = false;
+    } else {
+        [favoriteBtn setBackgroundImage:[UIImage imageNamed:@"star-y.png"] forState:UIControlStateNormal];
+        isFav = true;
+    }
+    [self storeFavStatusToVenues];
+}
+
+-(void)storeFavStatusToVenues {
+    
+        
+}
+
+-(void)addDataToCore {
+    
+    Venues *newVenue = [NSEntityDescription insertNewObjectForEntityForName:@"Venues" inManagedObjectContext:self.managedObjectContext];
+    newVenue.objectId = tempObjectId;
+    newVenue.isMyFavorite = [NSNumber numberWithBool:isFav];
+    
+    NSError *error;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
+    
 }
 
 #pragma mark - UITableViewDelegate & UITableViewDataSource
@@ -54,7 +97,7 @@
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
             object:(PFObject *)object{
     static NSString *simpleTableIdentifier = @"MainTableViewCell";
-    MainTableViewCell *cell = (MainTableViewCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    cell = (MainTableViewCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     if (cell == nil)
     {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"MainTableViewCell" owner:self options:nil];
@@ -65,16 +108,29 @@
     cell.areaLabel.text = object [@"area"];
    cell.priceLabel.text = object [@"price"];
     cell.streetLabel.text = object [@"municipality"];
+    
+    //create favorite button programmatically
+    favoriteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    favoriteBtn.frame = CGRectMake(20.0f, 20.0f, 30.0f, 30.0f);
+    [favoriteBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [favoriteBtn setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
+    tempObjectId = [object objectId];
+    [favoriteBtn setBackgroundImage:[UIImage imageNamed:@"star-g.png"] forState:UIControlStateNormal];
+    [favoriteBtn addTarget:self action:@selector(menuPressed) forControlEvents:UIControlEventTouchUpInside];
+    [cell addSubview:favoriteBtn];
 
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-}
+//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    cell.favoriteButton.imageView.image =  [UIImage imageNamed:@"star-y.png"];
+//    NSLog(@"indexpath::%d",indexPath.row);
+//    
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 299.0;
 }
+
 
 @end

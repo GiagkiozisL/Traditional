@@ -2,10 +2,6 @@
 #import "MainTableViewCell.h"
 
 @implementation MainTableViewCell
-@synthesize favoriteButton;
-
-
-bool isFav = false;
 
 - (void)awakeFromNib {
     // Initialization code
@@ -16,18 +12,28 @@ bool isFav = false;
 
 }
 
-- (IBAction)makeFavorite:(id)sender {
+-(void)layoutSubviews
+{
     
-//    if (isFav) {
-//        [favoriteButton setImage:[UIImage imageNamed:@"star-g.png"] forState:UIControlStateNormal];
-//        isFav = false;
-//        NSLog(@"++++++++");
-//    } else {
-//        [favoriteButton setImage:[UIImage imageNamed:@"star-y.png"] forState:UIControlStateNormal];
-//        isFav = true;
-//        NSLog(@"---------");
-//    }
-//    NSLog(@"make fav");
+    if (!self.laidOut) {
+        
+        CAGradientLayer *l = [CAGradientLayer layer];
+        l.frame = self.shadowView.bounds;
+        UIColor* startColor = [UIColor colorWithWhite:0.0 alpha:0.0];
+        UIColor* endColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+        l.colors = [NSArray arrayWithObjects:(id)startColor.CGColor, (id)endColor.CGColor, nil];
+        [self.shadowView.layer addSublayer:l];
+        
+        CAGradientLayer *topShadow = [CAGradientLayer layer];
+        topShadow.frame = CGRectMake(0, -3, 320, 3);
+        UIColor* startColor2 = [UIColor colorWithWhite:0.0 alpha:0.0];
+        UIColor* endColor2 = [UIColor colorWithWhite:0.0 alpha:0.1];
+        topShadow.colors = [NSArray arrayWithObjects:(id)startColor2.CGColor, (id)endColor2.CGColor, nil];
+        [self.layer addSublayer:topShadow];
+        
+        self.laidOut = YES;
+        
+    }
 }
 
 @end

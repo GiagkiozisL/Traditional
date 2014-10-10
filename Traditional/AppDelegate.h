@@ -14,6 +14,7 @@
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
+-(NSArray*)getAllVenueRecords;
 
 
 @end
