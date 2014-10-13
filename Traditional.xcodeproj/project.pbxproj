@@ -72,7 +72,13 @@
 		45426FCB19E5517100EDB9E9 /* Comms.m in Sources */ = {isa = PBXBuildFile; fileRef = 45426FCA19E5517100EDB9E9 /* Comms.m */; };
 		45426FCE19E5561C00EDB9E9 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45426FCD19E5561C00EDB9E9 /* ParseFacebookUtils.framework */; };
 		45789C3B19E7D0B9006F1450 /* Venues.m in Sources */ = {isa = PBXBuildFile; fileRef = 45789C3A19E7D0B9006F1450 /* Venues.m */; };
+		45789C3F19E7DD70006F1450 /* FavoritesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 45789C3D19E7DD70006F1450 /* FavoritesTableViewCell.m */; };
+		45789C4019E7DD70006F1450 /* FavoritesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45789C3E19E7DD70006F1450 /* FavoritesTableViewCell.xib */; };
+		45789C4519E7EA78006F1450 /* likedLabel.png in Resources */ = {isa = PBXBuildFile; fileRef = 45789C4319E7EA78006F1450 /* likedLabel.png */; };
+		45789C4619E7EA78006F1450 /* likedLabel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45789C4419E7EA78006F1450 /* likedLabel@2x.png */; };
 		45A2148F19E6853000352332 /* body.png in Resources */ = {isa = PBXBuildFile; fileRef = 45A2148E19E6853000352332 /* body.png */; };
+		45CD481E19EA876000DFD779 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45CD481D19EA876000DFD779 /* Foundation.framework */; };
+		45CD482019EA87D800DFD779 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45CD481F19EA87D800DFD779 /* CoreFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -169,7 +175,14 @@
 		45426FCD19E5561C00EDB9E9 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
 		45789C3919E7D0B9006F1450 /* Venues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Venues.h; sourceTree = "<group>"; };
 		45789C3A19E7D0B9006F1450 /* Venues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Venues.m; sourceTree = "<group>"; };
+		45789C3C19E7DD70006F1450 /* FavoritesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesTableViewCell.h; sourceTree = "<group>"; };
+		45789C3D19E7DD70006F1450 /* FavoritesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesTableViewCell.m; sourceTree = "<group>"; };
+		45789C3E19E7DD70006F1450 /* FavoritesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoritesTableViewCell.xib; sourceTree = "<group>"; };
+		45789C4319E7EA78006F1450 /* likedLabel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = likedLabel.png; sourceTree = "<group>"; };
+		45789C4419E7EA78006F1450 /* likedLabel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "likedLabel@2x.png"; sourceTree = "<group>"; };
 		45A2148E19E6853000352332 /* body.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = body.png; sourceTree = "<group>"; };
+		45CD481D19EA876000DFD779 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		45CD481F19EA87D800DFD779 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +190,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45CD482019EA87D800DFD779 /* CoreFoundation.framework in Frameworks */,
+				45CD481E19EA876000DFD779 /* Foundation.framework in Frameworks */,
 				45426FC719E54F4600EDB9E9 /* Social.framework in Frameworks */,
 				45426C4F19E5270B00EDB9E9 /* MapKit.framework in Frameworks */,
 				4525EAE919E4286C0009BADE /* libz.1.1.3.dylib in Frameworks */,
@@ -227,14 +242,13 @@
 		4525EA5D19E3C9AB0009BADE /* Traditional */ = {
 			isa = PBXGroup;
 			children = (
+				4597B6E519EC011B004DB81D /* Application */,
 				45426FC819E5515A00EDB9E9 /* Model */,
 				45426C5419E539D500EDB9E9 /* UIView */,
 				45426C5319E52F0700EDB9E9 /* LogIn&&SignUp */,
 				4525EAAC19E3D9730009BADE /* TableViewCellls */,
 				4525EAA719E3D4B10009BADE /* Images */,
 				4525EA9A19E3CDB50009BADE /* Controllers */,
-				4525EA6219E3C9AB0009BADE /* AppDelegate.h */,
-				4525EA6319E3C9AB0009BADE /* AppDelegate.m */,
 				4525EA6819E3C9AB0009BADE /* ViewController.h */,
 				4525EA6919E3C9AB0009BADE /* ViewController.m */,
 				4525EA6B19E3C9AB0009BADE /* Main.storyboard */,
@@ -276,6 +290,8 @@
 		4525EA8919E3CC290009BADE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				45CD481F19EA87D800DFD779 /* CoreFoundation.framework */,
+				45CD481D19EA876000DFD779 /* Foundation.framework */,
 				45426FCD19E5561C00EDB9E9 /* ParseFacebookUtils.framework */,
 				45426FC619E54F4500EDB9E9 /* Social.framework */,
 				45426FC419E54F3D00EDB9E9 /* FacebookSDK.framework */,
@@ -318,6 +334,8 @@
 		4525EAA719E3D4B10009BADE /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				45789C4319E7EA78006F1450 /* likedLabel.png */,
+				45789C4419E7EA78006F1450 /* likedLabel@2x.png */,
 				45A2148E19E6853000352332 /* body.png */,
 				45426E0E19E5496800EDB9E9 /* submitBtn.png */,
 				45426E0F19E5496800EDB9E9 /* submitBtn@2x.png */,
@@ -360,6 +378,9 @@
 				4525EAAD19E3D9980009BADE /* MainTableViewCell.h */,
 				4525EAAE19E3D9980009BADE /* MainTableViewCell.m */,
 				4525EAAF19E3D9980009BADE /* MainTableViewCell.xib */,
+				45789C3C19E7DD70006F1450 /* FavoritesTableViewCell.h */,
+				45789C3D19E7DD70006F1450 /* FavoritesTableViewCell.m */,
+				45789C3E19E7DD70006F1450 /* FavoritesTableViewCell.xib */,
 			);
 			name = TableViewCellls;
 			path = ..;
@@ -393,6 +414,15 @@
 				45426FCA19E5517100EDB9E9 /* Comms.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		4597B6E519EC011B004DB81D /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				4525EA6219E3C9AB0009BADE /* AppDelegate.h */,
+				4525EA6319E3C9AB0009BADE /* AppDelegate.m */,
+			);
+			name = Application;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -476,6 +506,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45789C4519E7EA78006F1450 /* likedLabel.png in Resources */,
 				4525EAB119E3D9980009BADE /* MainTableViewCell.xib in Resources */,
 				4525EAC119E3DA530009BADE /* spring-w@2x.png in Resources */,
 				4525EAC819E3DA6C0009BADE /* summer-y.png in Resources */,
@@ -486,6 +517,7 @@
 				4525EAD019E3DA900009BADE /* spring-y.png in Resources */,
 				4525EAB319E3D9ED0009BADE /* home-1.jpg in Resources */,
 				4525EAD119E3DA900009BADE /* spring-y@2x.png in Resources */,
+				45789C4619E7EA78006F1450 /* likedLabel@2x.png in Resources */,
 				4525EAD919E3DAEE0009BADE /* star-g@2x.png in Resources */,
 				4525EAE019E3E2580009BADE /* star-y.png in Resources */,
 				45426E0D19E5470300EDB9E9 /* fblogin@2x.png in Resources */,
@@ -501,6 +533,7 @@
 				4525EACD19E3DA820009BADE /* winter-y@2x.png in Resources */,
 				4525EAD819E3DAEE0009BADE /* star-g.png in Resources */,
 				4525EABD19E3DA350009BADE /* winter-w@2x.png in Resources */,
+				45789C4019E7DD70006F1450 /* FavoritesTableViewCell.xib in Resources */,
 				4525EAA919E3D4BF0009BADE /* 6portrait.png in Resources */,
 				4525EAB919E3DA110009BADE /* fall-w@2x.png in Resources */,
 				4525EAC919E3DA6C0009BADE /* summer-y@2x.png in Resources */,
@@ -537,6 +570,7 @@
 				4525EAF419E42D3D0009BADE /* TGMenuViewController.m in Sources */,
 				45426C5219E528F000EDB9E9 /* TGFavoritesViewController.m in Sources */,
 				45789C3B19E7D0B9006F1450 /* Venues.m in Sources */,
+				45789C3F19E7DD70006F1450 /* FavoritesTableViewCell.m in Sources */,
 				45426C5719E539FE00EDB9E9 /* ILTranslucentView.m in Sources */,
 				4525EAF619E42D3D0009BADE /* TGMainViewController.m in Sources */,
 				4525EA6719E3C9AB0009BADE /* Traditional.xcdatamodeld in Sources */,

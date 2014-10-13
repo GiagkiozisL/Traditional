@@ -138,16 +138,14 @@ UIImageView *imageView;
 }
 
 -(void)menuItem1Pressed {
-    UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:[TGMainViewController new]];
-    [self.sideMenuViewController setMainViewController:controller animated:YES closeMenu:YES];
+    UINavigationController *mainController = [[UINavigationController alloc] initWithRootViewController:[TGMainViewController new]];
+    [self.sideMenuViewController setMainViewController:mainController animated:YES closeMenu:YES];
 }
 
 -(void)menuItem2Pressed {
-    NSString *storyboardName = @"Main";
-    NSString *viewControllerID = @"favorites";
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
-    TGFavoritesViewController *favoritesController = (TGFavoritesViewController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
-    [self.sideMenuViewController setMainViewController:favoritesController animated:YES closeMenu:YES];
+
+    UINavigationController *favController = [[UINavigationController alloc]initWithRootViewController:[TGFavoritesViewController new]];
+    [self.sideMenuViewController setMainViewController:favController animated:YES closeMenu:YES];
 }
 
 -(void)menuItem3Pressed {

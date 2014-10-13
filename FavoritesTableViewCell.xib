@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavoritesTableViewCell" rowHeight="101" id="KGk-i7-Jjw" customClass="FavoritesTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="101"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profile-stats-bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="jJh-QL-olj">
+                        <rect key="frame" x="0.0" y="47" width="320" height="51"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="home-1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="SCJ-Kh-7Ta">
+                        <rect key="frame" x="0.0" y="0.5" width="320" height="100.5"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Guesthoue Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t68-ZN-4JX">
+                        <rect key="frame" x="8" y="62" width="173" height="21"/>
+                        <fontDescription key="fontDescription" name="EuphemiaUCAS-Bold" family="Euphemia UCAS" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Area/Province" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mHM-mo-6T8">
+                        <rect key="frame" x="113" y="79" width="163" height="21"/>
+                        <fontDescription key="fontDescription" name="EuphemiaUCAS" family="Euphemia UCAS" pointSize="15"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="fall-w.png" translatesAutoresizingMaskIntoConstraints="NO" id="QAh-cb-xfi">
+                        <rect key="frame" x="290" y="10" width="20" height="20"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="winter-w.png" translatesAutoresizingMaskIntoConstraints="NO" id="pXK-PR-v9Z">
+                        <rect key="frame" x="260" y="10" width="20" height="20"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="spring-w.png" translatesAutoresizingMaskIntoConstraints="NO" id="42U-GU-R7X">
+                        <rect key="frame" x="230" y="10" width="20" height="20"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="summer-w.png" translatesAutoresizingMaskIntoConstraints="NO" id="5UG-cc-QNB">
+                        <rect key="frame" x="200" y="10" width="20" height="20"/>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dsc-R4-jnk">
+                        <rect key="frame" x="0.0" y="0.0" width="40" height="35"/>
+                        <state key="normal" title="Button" image="likedLabel.png">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="90€" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afO-Ap-v2c">
+                        <rect key="frame" x="246" y="38" width="58" height="45"/>
+                        <fontDescription key="fontDescription" name="EuphemiaUCAS-Bold" family="Euphemia UCAS" pointSize="23"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TV1-5U-UsR">
+                        <rect key="frame" x="0.0" y="62" width="320" height="39"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                </subviews>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="areaLabel" destination="mHM-mo-6T8" id="hOs-PE-vzq"/>
+                <outlet property="houseImage" destination="SCJ-Kh-7Ta" id="EXz-F7-2kZ"/>
+                <outlet property="houseNameLabel" destination="t68-ZN-4JX" id="COu-mD-3Ck"/>
+                <outlet property="priceLabel" destination="afO-Ap-v2c" id="3MK-X9-nVe"/>
+                <outlet property="shadowImage" destination="jJh-QL-olj" id="i5t-dP-Kxt"/>
+                <outlet property="shadowView" destination="TV1-5U-UsR" id="XYm-QI-S33"/>
+            </connections>
+            <point key="canvasLocation" x="288" y="246.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="fall-w.png" width="30" height="30"/>
+        <image name="home-1.jpg" width="580" height="414"/>
+        <image name="likedLabel.png" width="40" height="35"/>
+        <image name="profile-stats-bg.png" width="320" height="70"/>
+        <image name="spring-w.png" width="30" height="30"/>
+        <image name="summer-w.png" width="30" height="30"/>
+        <image name="winter-w.png" width="30" height="30"/>
+    </resources>
+</document>

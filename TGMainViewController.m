@@ -23,6 +23,7 @@ bool isFav = false;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.title = @"Main View";
@@ -57,10 +58,14 @@ bool isFav = false;
         isFav = true;
     }
     [self storeFavStatusToVenues];
+    [self addDataToCore];
 }
 
 -(void)storeFavStatusToVenues {
     
+    Venues *newVenue = [NSEntityDescription insertNewObjectForEntityForName:@"Venues" inManagedObjectContext:self.managedObjectContext];
+    newVenue.objectId = tempObjectId;
+    newVenue.isMyFavorite = [NSNumber numberWithBool:isFav];
         
 }
 
@@ -74,6 +79,7 @@ bool isFav = false;
     if (![self.managedObjectContext save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
     }
+    NSLog(@"record added succesfully %@",newVenue);
     
 }
 
@@ -108,6 +114,21 @@ bool isFav = false;
     cell.areaLabel.text = object [@"area"];
    cell.priceLabel.text = object [@"price"];
     cell.streetLabel.text = object [@"municipality"];
+  
+    
+    
+    if ([[object objectForKey:@"winter"]boolValue]) {
+    cell.winterImg.image =[UIImage imageNamed:@"winter-y.png"];
+    }
+    if ([[object objectForKey:@"spring"]boolValue]) {
+        cell.springImg.image =[UIImage imageNamed:@"spring-y.png"];
+    } else cell.springImg.alpha = 0.35;
+    if ([[object objectForKey:@"fall"]boolValue]) {
+        cell.fallImg.image =[UIImage imageNamed:@"fall-y.png"];
+    }
+    if ([[object objectForKey:@"summer"]boolValue]) {
+        cell.summerImg.image =[UIImage imageNamed:@"summer-y.png"];
+    } else cell.summerImg.alpha = 0.35;
     
     //create favorite button programmatically
     favoriteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -121,12 +142,6 @@ bool isFav = false;
 
     return cell;
 }
-
-//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    cell.favoriteButton.imageView.image =  [UIImage imageNamed:@"star-y.png"];
-//    NSLog(@"indexpath::%d",indexPath.row);
-//    
-//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 299.0;

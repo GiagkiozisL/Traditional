@@ -29,14 +29,8 @@
                         <state key="selected" image="star-y.png"/>
                         <state key="highlighted" image="star-y.png"/>
                     </button>
-                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Area" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5xY-l2-kTR">
-                        <rect key="frame" x="14" y="236" width="138" height="22"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Street" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Dm-do-ltg">
-                        <rect key="frame" x="24" y="263" width="101" height="25"/>
+                        <rect key="frame" x="24" y="268" width="101" height="25"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -48,8 +42,8 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Guesthouse Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nLq-BC-Rra">
-                        <rect key="frame" x="14" y="224" width="288" height="30"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="12" y="216" width="288" height="30"/>
+                        <fontDescription key="fontDescription" name="EuphemiaUCAS-Bold" family="Euphemia UCAS" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -57,6 +51,12 @@
                         <rect key="frame" x="0.0" y="200" width="320" height="60"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Area" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQI-nn-z7v">
+                        <rect key="frame" x="35" y="239" width="231" height="30"/>
+                        <fontDescription key="fontDescription" name="EuphemiaUCAS" family="Euphemia UCAS" pointSize="13"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="fall-w.png" translatesAutoresizingMaskIntoConstraints="NO" id="xsu-mu-XVZ">
                         <rect key="frame" x="271" y="20" width="30" height="30"/>
                     </imageView>
@@ -72,14 +72,18 @@
                 </subviews>
             </tableViewCellContentView>
             <connections>
-                <outlet property="areaLabel" destination="5xY-l2-kTR" id="LRi-EP-2Fv"/>
+                <outlet property="areaLabel" destination="jQI-nn-z7v" id="wvt-AH-OSM"/>
+                <outlet property="fallImg" destination="xsu-mu-XVZ" id="quf-he-TfI"/>
                 <outlet property="favoriteButton" destination="Sa5-gV-CMj" id="j7R-CY-PbH"/>
                 <outlet property="houseImage" destination="qQU-A8-LeX" id="OVs-kq-ydg"/>
                 <outlet property="houseNameLabel" destination="nLq-BC-Rra" id="JVx-4J-919"/>
                 <outlet property="priceLabel" destination="roW-hN-GTt" id="yhZ-tP-Zoo"/>
                 <outlet property="shadowImage" destination="0Rh-Lq-f1o" id="jkw-en-OKb"/>
                 <outlet property="shadowView" destination="g8x-3d-itc" id="FQk-7w-Ria"/>
+                <outlet property="springImg" destination="3AE-0m-aYC" id="AFr-M5-4zh"/>
                 <outlet property="streetLabel" destination="1Dm-do-ltg" id="lYC-Jd-Mt0"/>
+                <outlet property="summerImg" destination="Ojd-Pv-SCT" id="LWb-gp-ese"/>
+                <outlet property="winterImg" destination="Tek-MC-KdY" id="i8l-In-hiR"/>
             </connections>
             <point key="canvasLocation" x="36" y="317.5"/>
         </tableViewCell>
