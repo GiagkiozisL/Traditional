@@ -1,3 +1,4 @@
+
 #import "TGFavoritesViewController.h"
 #import "TGSideMenuViewController.h"
 #import "FavoritesTableViewCell.h"
@@ -11,25 +12,27 @@
 @end
 
 @implementation TGFavoritesViewController
-
 int count;
+UIImageView *footerView;
 
 #pragma mark -UIViewController
 
-- (void)viewDidLoad {
+-(void)viewDidLoad {
     
     [super viewDidLoad];
-    
     id delegate = [[UIApplication sharedApplication] delegate];
     self.managedObjectContext = [delegate managedObjectContext];
-    self.tableView.delegate = self;
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Remove all" style:UIBarButtonItemStylePlain target:self action:@selector(removeAllRecords)];
     
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Remove all" style:UIBarButtonItemStylePlain target:self action:@selector(removeAllRecords)];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"burgerIcon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(openButtonPressed)];
+
     NSError *error;
+    
     if (![[self fetchedResultsController] performFetch:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
     }
+    
 }
 
 -(void)openButtonPressed {
@@ -44,49 +47,60 @@ int count;
     
     NSError * error = nil;
     NSArray * venues = [self.managedObjectContext executeFetchRequest:allVenues error:&error];
-    //error handling goes here
+    
     for (NSManagedObject * venue in venues) {
         [self.managedObjectContext deleteObject:venue];
     }
+    
     NSError *saveError = nil;
     [self.managedObjectContext save:&saveError];
-    //more error handling here
+    
+    
+        footerView = [[UIImageView alloc]init];
+        footerView.image = [UIImage imageNamed:@"empty_view.png"];
+    [self.tableView addSubview:footerView];
+
+
 }
 
-#pragma mark - Table view data source
+#pragma mark - Table view data source methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+       return [[self.fetchedResultsController sections] count];
     
-    NSInteger count = [[self.fetchedResultsController sections] count];
-    
-    if (count == 0) {
-        count = 1;
-    }
-    
-    return count;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 101.0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+   
+
     
-    NSInteger numberOfRows = 0;
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
     
-    if ([self.fetchedResultsController sections].count > 0) {
-        id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
-        numberOfRows = [sectionInfo numberOfObjects];
+    if ([sectionInfo numberOfObjects] != 0) {
+        footerView = nil;
     }
     
-    return numberOfRows;
+    return [sectionInfo numberOfObjects];
+    
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 35.0;
+}
+
+//-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+//    return 568.0;
+//}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 100.0;
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     
-    // Configure the cell to show the book's title
-    Venues *venues = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = venues.objectId;
+    Venues *venue = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text = venue.objectId;
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -95,22 +109,27 @@ int count;
     FavoritesTableViewCell *cell = (FavoritesTableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     // Configure the cell.
-    // [self configureCell:cell atIndexPath:indexPath];
+    
+    [self configureCell:cell atIndexPath:indexPath];
     
     if (cell ==nil) {
+        
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FavoritesTableViewCell" owner:self options:nil];
+        
         cell = [nib objectAtIndex:0];
+        
     }
-    Venues *venues = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.areaLabel.text = venues.objectId;
+    
+    [self configureCell:cell atIndexPath:indexPath];
     
     return cell;
+    
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     
-    // Display the authors' names as section headings.
     return [[[self.fetchedResultsController sections] objectAtIndex:section] name];
+    
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -118,67 +137,64 @@ int count;
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
         // Delete the managed object.
+        
         NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+        
         [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
         
+        
+        
         NSError *error;
+        
         if (![context save:&error]) {
-            /*
-             Replace this implementation with code to handle the error appropriately.
-             
-             abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-             */
+            
+            
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
+            
         }
     }
 }
 
-
 #pragma mark - Table view editing
 
-//- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-//
-//    // The table view should not be re-orderable.
-//    return NO;
-//}
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return NO;
+    
+}
 
 #pragma mark - Fetched results controller
 
-/*
- Returns the fetched results controller. Creates and configures the controller if necessary.
- */
 - (NSFetchedResultsController *)fetchedResultsController {
     
-    // Set up the fetched results controller if needed.
-    if (_fetchedResultsController == nil) {
-        // Create the fetch request for the entity.
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        // Edit the entity name as appropriate.
+    if (_fetchedResultsController != nil) {
         
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Venues" inManagedObjectContext:self.managedObjectContext];
-        [fetchRequest setEntity:entity];
+        return _fetchedResultsController;
         
-        // Edit the sort key as appropriate.
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"objectId" ascending:YES];
-        NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-        
-        [fetchRequest setSortDescriptors:sortDescriptors];
-        
-        // Edit the section name key path and cache name if appropriate.
-        // nil for section name key path means "no sections".
-        NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Root"];
-        aFetchedResultsController.delegate = self;
-        self.fetchedResultsController = aFetchedResultsController;
     }
     
+    // Create and configure a fetch request with the Book entity.
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Venues" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    // Create the sort descriptors array.
+    NSSortDescriptor *authorDescriptor = [[NSSortDescriptor alloc] initWithKey:@"objectId" ascending:YES];
+    NSSortDescriptor *titleDescriptor = [[NSSortDescriptor alloc] initWithKey:@"isMyFavorite" ascending:YES];
+    NSArray *sortDescriptors = @[authorDescriptor, titleDescriptor];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    // Create and initialize the fetch results controller.
+    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"objectId" cacheName:@"Root"];
+    _fetchedResultsController.delegate = self;
     return _fetchedResultsController;
+    
 }
-
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
     
     [self.tableView beginUpdates];
+    
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
@@ -188,41 +204,61 @@ int count;
     switch(type) {
             
         case NSFetchedResultsChangeInsert:
+            
             [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             break;
-            
+        
         case NSFetchedResultsChangeDelete:
+            
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             break;
             
         case NSFetchedResultsChangeUpdate:
+            
             [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             break;
             
         case NSFetchedResultsChangeMove:
+            
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             break;
+            
     }
+    
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
+
 {
+    
     switch(type) {
             
         case NSFetchedResultsChangeInsert:
+            
             [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationAutomatic];
             break;
             
         case NSFetchedResultsChangeDelete:
+            
             [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationAutomatic];
             break;
     }
+    
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     
     [self.tableView endUpdates];
+    
+}
+
+#pragma mark - Segue management
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    
 }
 
 @end
+
