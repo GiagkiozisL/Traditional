@@ -9,5 +9,4 @@
 @property (nonatomic) UIBarStyle translucentStyle; //blur style, Default or Black
 @property (nonatomic, strong) UIColor *translucentTintColor; //tint color of blur, [UIColor clearColor] is default
 
-
 @end
