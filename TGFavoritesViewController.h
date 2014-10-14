@@ -3,7 +3,7 @@
 #import <Parse/Parse.h>
 #import <CoreData/CoreData.h>
 
-@interface TGFavoritesViewController : UITableViewController <UITableViewDataSource,UITableViewDataSource,NSFetchedResultsControllerDelegate>
+@interface TGFavoritesViewController : UITableViewController <NSFetchedResultsControllerDelegate,UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 

@@ -1,10 +1,8 @@
-
 #import "TGFavoritesViewController.h"
 #import "TGSideMenuViewController.h"
 #import "FavoritesTableViewCell.h"
 #import "AppDelegate.h"
 #import "Venues.h"
-#import "NilTableView.h"
 
 @interface TGFavoritesViewController ()
 
@@ -13,7 +11,7 @@
 @end
 
 @implementation TGFavoritesViewController
-NilTableView *nilView;
+
 int count;
 
 #pragma mark -UIViewController
@@ -21,24 +19,23 @@ int count;
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    self.tableView.delegate = self;
     
     id delegate = [[UIApplication sharedApplication] delegate];
     self.managedObjectContext = [delegate managedObjectContext];
-    
+    self.tableView.delegate = self;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Remove all" style:UIBarButtonItemStylePlain target:self action:@selector(removeAllRecords)];
-    UIBarButtonItem *menuItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"burgerIcon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(openButtonPressed)];
-    self.navigationItem.leftBarButtonItem = menuItem;
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"burgerIcon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(openButtonPressed)];
     NSError *error;
     if (![[self fetchedResultsController] performFetch:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
     }
 }
 
--(void)openButtonPressed{
-    
+-(void)openButtonPressed {
     [self.sideMenuViewController openMenuAnimated:YES completion:nil];
 }
+
 -(void)removeAllRecords {
     
     NSFetchRequest * allVenues = [[NSFetchRequest alloc] init];
@@ -46,10 +43,10 @@ int count;
     [allVenues setIncludesPropertyValues:NO]; //only fetch the managedObjectID
     
     NSError * error = nil;
-    NSArray * cars = [self.managedObjectContext executeFetchRequest:allVenues error:&error];
+    NSArray * venues = [self.managedObjectContext executeFetchRequest:allVenues error:&error];
     //error handling goes here
-    for (NSManagedObject * car in cars) {
-        [self.managedObjectContext deleteObject:car];
+    for (NSManagedObject * venue in venues) {
+        [self.managedObjectContext deleteObject:venue];
     }
     NSError *saveError = nil;
     [self.managedObjectContext save:&saveError];
@@ -63,7 +60,6 @@ int count;
     NSInteger count = [[self.fetchedResultsController sections] count];
     
     if (count == 0) {
-        
         count = 1;
     }
     
@@ -86,10 +82,20 @@ int count;
     return numberOfRows;
 }
 
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    
+    // Configure the cell to show the book's title
+    Venues *venues = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text = venues.objectId;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"FavoritesTableViewCell";
     FavoritesTableViewCell *cell = (FavoritesTableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    // Configure the cell.
+    // [self configureCell:cell atIndexPath:indexPath];
     
     if (cell ==nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FavoritesTableViewCell" owner:self options:nil];
@@ -128,25 +134,11 @@ int count;
     }
 }
 
-//-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-//    
-//    UIImageView *imageView = [[UIImageView alloc]init];
-//    imageView.image = [UIImage imageNamed:@"empty_view.png"];
-//    return imageView;
-//    
-//}
-//
-//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-//    
-//    // height of the footer
-//    // this needs to be set, otherwise the height is zero and no footer will show
-//    return 568;
-//}
 
 #pragma mark - Table view editing
 
 //- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-//    
+//
 //    // The table view should not be re-orderable.
 //    return NO;
 //}
@@ -163,7 +155,7 @@ int count;
         // Create the fetch request for the entity.
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
         // Edit the entity name as appropriate.
-
+        
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Venues" inManagedObjectContext:self.managedObjectContext];
         [fetchRequest setEntity:entity];
         
@@ -203,9 +195,9 @@ int count;
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             break;
             
-//        case NSFetchedResultsChangeUpdate:
-//            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
-//            break;
+        case NSFetchedResultsChangeUpdate:
+            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            break;
             
         case NSFetchedResultsChangeMove:
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
