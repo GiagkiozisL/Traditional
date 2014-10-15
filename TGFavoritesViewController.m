@@ -53,7 +53,7 @@ UIImageView *footerView;
     NSError *saveError = nil;
     [self.managedObjectContext save:&saveError];
     
-        footerView = [[UIImageView alloc]init];
+    footerView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320.0, 568.0)];
         footerView.image = [UIImage imageNamed:@"empty_view.png"];
     [self.tableView addSubview:footerView];
 }
@@ -85,26 +85,25 @@ UIImageView *footerView;
     return 100.0;
 }
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+- (void)configureCell:(FavoritesTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     
     Venues *venue = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = venue.objectId;
+    cell.houseNameLabel.text = venue.name;
+    UIImage *image = [UIImage imageWithData:[venue valueForKey:@"profileImage"]];
+    cell.houseImage.image = image;
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"FavoritesTableViewCell";
     FavoritesTableViewCell *cell = (FavoritesTableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    // Configure the cell.
-    
-    [self configureCell:cell atIndexPath:indexPath];
-    
+
     if (cell ==nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FavoritesTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    
+
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
@@ -160,7 +159,7 @@ UIImageView *footerView;
     [fetchRequest setEntity:entity];
     
     // Create the sort descriptors array.
-    NSSortDescriptor *authorDescriptor = [[NSSortDescriptor alloc] initWithKey:@"objectId" ascending:YES];
+    NSSortDescriptor *authorDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
     NSSortDescriptor *titleDescriptor = [[NSSortDescriptor alloc] initWithKey:@"isMyFavorite" ascending:YES];
     NSArray *sortDescriptors = @[authorDescriptor, titleDescriptor];
     [fetchRequest setSortDescriptors:sortDescriptors];
@@ -257,4 +256,3 @@ UIImageView *footerView;
 }
 
 @end
-

@@ -5,5 +5,7 @@
 
 @dynamic objectId;
 @dynamic isMyFavorite;
+@dynamic name;
+@dynamic profileImage;
 
 @end

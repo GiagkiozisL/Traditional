@@ -15,7 +15,9 @@
 @implementation TGMainViewController
 MainTableViewCell *cell;
 NSString *favrtBtnId;
-NSString *tempObjectId;
+NSString *tempMunicipality;
+NSString *tempHouseName;
+UIImage *tempProfileImage;
 UIButton *favoriteBtn;
 
 bool isFav = false;
@@ -27,6 +29,7 @@ bool isFav = false;
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.title = @"Main View";
     self.view.backgroundColor = [UIColor grayColor];
     UIBarButtonItem *menuItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"burgerIcon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(openButtonPressed)];
@@ -64,8 +67,11 @@ bool isFav = false;
 -(void)addDataToCore {
     
     Venues *newVenue = (Venues *)[NSEntityDescription insertNewObjectForEntityForName:@"Venues" inManagedObjectContext:self.managedObjectContext];
-    newVenue.objectId = tempObjectId;
+    newVenue.objectId = tempMunicipality;
+    newVenue.name = tempHouseName;
     newVenue.isMyFavorite = [NSNumber numberWithBool:isFav];
+    NSData *imageData = UIImageJPEGRepresentation(tempProfileImage,0.0);
+    [newVenue setValue:imageData forKey:@"profileImage"];
     TGFavoritesViewController *favoritesController = [[TGFavoritesViewController alloc]init];
     [favoritesController addViewController:self didFinishWithSave:YES];
     
@@ -103,37 +109,53 @@ bool isFav = false;
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"MainTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-   
+    PFImageView *profileImage = [[PFImageView alloc]init];
+    profileImage.file = (PFFile*)object[@"image"];
+    [profileImage loadInBackground];
+    cell.houseImage.image = profileImage.image;
    cell.houseNameLabel.text = object [@"name"];
     cell.areaLabel.text = object [@"area"];
    cell.priceLabel.text = object [@"price"];
     cell.streetLabel.text = object [@"municipality"];
-  
-    
     
     if ([[object objectForKey:@"winter"]boolValue]) {
     cell.winterImg.image =[UIImage imageNamed:@"winter-y.png"];
+    } else  {
+        cell.winterImg.image =[UIImage imageNamed:@"winter-w.png"];
+        cell.winterImg.alpha = 0.35;
     }
     if ([[object objectForKey:@"spring"]boolValue]) {
         cell.springImg.image =[UIImage imageNamed:@"spring-y.png"];
-    } else cell.springImg.alpha = 0.35;
+    } else {
+        cell.springImg.image =[UIImage imageNamed:@"spring-w.png"];
+        cell.springImg.alpha = 0.35;
+    }
     if ([[object objectForKey:@"fall"]boolValue]) {
         cell.fallImg.image =[UIImage imageNamed:@"fall-y.png"];
+    } else  {
+        cell.fallImg.image =[UIImage imageNamed:@"fall-w.png"];
+        cell.fallImg.alpha = 0.35;
     }
     if ([[object objectForKey:@"summer"]boolValue]) {
         cell.summerImg.image =[UIImage imageNamed:@"summer-y.png"];
-    } else cell.summerImg.alpha = 0.35;
+    } else  {
+        cell.summerImg.image =[UIImage imageNamed:@"summer-w.png"];
+        cell.summerImg.alpha = 0.35;
+    }
     
     //create favorite button programmatically
     favoriteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     favoriteBtn.frame = CGRectMake(20.0f, 20.0f, 30.0f, 30.0f);
     [favoriteBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [favoriteBtn setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
-    tempObjectId = [object objectId];
+
+    tempMunicipality = object [@"municipality"];
+    tempHouseName = object [@"name"];
+    tempProfileImage = profileImage.image;
     [favoriteBtn setBackgroundImage:[UIImage imageNamed:@"star-g.png"] forState:UIControlStateNormal];
     [favoriteBtn addTarget:self action:@selector(menuPressed) forControlEvents:UIControlEventTouchUpInside];
     [cell addSubview:favoriteBtn];
-
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     return cell;
 }
 
