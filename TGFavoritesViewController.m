@@ -1,6 +1,7 @@
 
 #import "TGFavoritesViewController.h"
 #import "TGSideMenuViewController.h"
+#import "TGMainViewController.h"
 #import "FavoritesTableViewCell.h"
 #import "AppDelegate.h"
 #import "Venues.h"
@@ -15,22 +16,21 @@
 int count;
 UIImageView *footerView;
 
+
 #pragma mark -UIViewController
 
 -(void)viewDidLoad {
     
     [super viewDidLoad];
-    id delegate = [[UIApplication sharedApplication] delegate];
-    self.managedObjectContext = [delegate managedObjectContext];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Remove all" style:UIBarButtonItemStylePlain target:self action:@selector(removeAllRecords)];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"burgerIcon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(openButtonPressed)];
-
-    NSError *error;
+     NSError *error;
     if (![[self fetchedResultsController] performFetch:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 -(void)openButtonPressed {
@@ -67,14 +67,7 @@ UIImageView *footerView;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
    
-
-    
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
-    
-    if ([sectionInfo numberOfObjects] != 0) {
-        footerView = nil;
-    }
-    
+        id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
     return [sectionInfo numberOfObjects];
     
 }
@@ -83,9 +76,10 @@ UIImageView *footerView;
     return 35.0;
 }
 
-//-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-//    return 568.0;
-//}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    
+    return 0;
+}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 100.0;
@@ -95,7 +89,6 @@ UIImageView *footerView;
     
     Venues *venue = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = venue.objectId;
-    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -108,15 +101,12 @@ UIImageView *footerView;
     [self configureCell:cell atIndexPath:indexPath];
     
     if (cell ==nil) {
-        
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FavoritesTableViewCell" owner:self options:nil];
-        
         cell = [nib objectAtIndex:0];
-        
     }
     
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self configureCell:cell atIndexPath:indexPath];
-    
     return cell;
     
 }
@@ -131,14 +121,9 @@ UIImageView *footerView;
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
-        // Delete the managed object.
-        
         NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
         
         [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
-        
-        
-        
         NSError *error;
         
         if (![context save:&error]) {
@@ -163,10 +148,11 @@ UIImageView *footerView;
 - (NSFetchedResultsController *)fetchedResultsController {
     
     if (_fetchedResultsController != nil) {
-        
         return _fetchedResultsController;
-        
     }
+    
+    id delegate = [[UIApplication sharedApplication] delegate];
+    self.managedObjectContext = [delegate managedObjectContext];
     
     // Create and configure a fetch request with the Book entity.
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -224,9 +210,7 @@ UIImageView *footerView;
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
-
 {
-    
     switch(type) {
             
         case NSFetchedResultsChangeInsert:
@@ -239,7 +223,6 @@ UIImageView *footerView;
             [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationAutomatic];
             break;
     }
-    
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
@@ -250,9 +233,27 @@ UIImageView *footerView;
 
 #pragma mark - Segue management
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {}
+
+#pragma mark - MainViewController delegte
+
+-(void)addViewController:(TGMainViewController*)controller didFinishWithSave:(BOOL)save {
     
-    
+    if (save) {
+        
+        NSError *error;
+        NSManagedObjectContext *addingManagedObjectContext = [controller managedObjectContext];
+        
+        if (![addingManagedObjectContext save:&error]) {
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+        
+        if (![[self.fetchedResultsController managedObjectContext] save:&error]) {
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+    }
 }
 
 @end

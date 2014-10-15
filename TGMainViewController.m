@@ -3,12 +3,13 @@
 #import "AppDelegate.h"
 #import "Venues.h"
 #import "TGSideMenuViewController.h"
+#import "TGFavoritesViewController.h"
 #import "TGMapViewController.h"
 #import "ControlVariables.h"
 #import "MainTableViewCell.h"
 
 @interface TGMainViewController ()
-@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @end
 
 @implementation TGMainViewController
@@ -57,23 +58,16 @@ bool isFav = false;
         [favoriteBtn setBackgroundImage:[UIImage imageNamed:@"star-y.png"] forState:UIControlStateNormal];
         isFav = true;
     }
-    [self storeFavStatusToVenues];
     [self addDataToCore];
-}
-
--(void)storeFavStatusToVenues {
-    
-    Venues *newVenue = [NSEntityDescription insertNewObjectForEntityForName:@"Venues" inManagedObjectContext:self.managedObjectContext];
-    newVenue.objectId = tempObjectId;
-    newVenue.isMyFavorite = [NSNumber numberWithBool:isFav];
-        
 }
 
 -(void)addDataToCore {
     
-    Venues *newVenue = [NSEntityDescription insertNewObjectForEntityForName:@"Venues" inManagedObjectContext:self.managedObjectContext];
+    Venues *newVenue = (Venues *)[NSEntityDescription insertNewObjectForEntityForName:@"Venues" inManagedObjectContext:self.managedObjectContext];
     newVenue.objectId = tempObjectId;
     newVenue.isMyFavorite = [NSNumber numberWithBool:isFav];
+    TGFavoritesViewController *favoritesController = [[TGFavoritesViewController alloc]init];
+    [favoritesController addViewController:self didFinishWithSave:YES];
     
     NSError *error;
     if (![self.managedObjectContext save:&error]) {
@@ -146,6 +140,5 @@ bool isFav = false;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 299.0;
 }
-
 
 @end
