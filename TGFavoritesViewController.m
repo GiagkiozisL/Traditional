@@ -27,12 +27,10 @@ UIImageView *footerView;
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"burgerIcon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(openButtonPressed)];
 
     NSError *error;
-    
     if (![[self fetchedResultsController] performFetch:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
-    
 }
 
 -(void)openButtonPressed {
@@ -55,12 +53,9 @@ UIImageView *footerView;
     NSError *saveError = nil;
     [self.managedObjectContext save:&saveError];
     
-    
         footerView = [[UIImageView alloc]init];
         footerView.image = [UIImage imageNamed:@"empty_view.png"];
     [self.tableView addSubview:footerView];
-
-
 }
 
 #pragma mark - Table view data source methods
