@@ -107,13 +107,11 @@ UIImageView *footerView;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
-    
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     
     return [[[self.fetchedResultsController sections] objectAtIndex:section] name];
-    
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -121,13 +119,10 @@ UIImageView *footerView;
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
         NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-        
         [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
         NSError *error;
         
         if (![context save:&error]) {
-            
-            
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             
         }
