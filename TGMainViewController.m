@@ -21,13 +21,14 @@ NSMutableDictionary *inputDict;
 PListHelper *objPlistHelper;
 MainTableViewCell *cell;
 NSString *favrtBtnId;
+NSString *tempObjectId;
 NSString *tempMunicipality;
 NSString *tempHouseName;
 UIImage *tempProfileImage;
 UIButton *favoriteBtn;
 NSString *path;
 NSMutableDictionary *data;
-
+Venues *venues;
 bool isFav = false;
 
 #pragma - UIViewController
@@ -35,6 +36,9 @@ bool isFav = false;
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    id delegate = [[UIApplication sharedApplication] delegate];
+    self.managedObjectContext = [delegate managedObjectContext];
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -47,21 +51,15 @@ bool isFav = false;
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
-    
     if ([fileManager fileExistsAtPath: path])
     {
         data = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
     }
     else
     {
-        // If the file doesn’t exist, create an empty dictionary
         data = [[NSMutableDictionary alloc] init];
     }
-    
-//    int value = 5;
-//    [data setObject:[NSNumber numberWithInt:value] forKey:@"value"];
-//    [data writeToFile: path atomically:YES];
-    
+
     self.view.backgroundColor = [UIColor grayColor];
     UIBarButtonItem *menuItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"burgerIcon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(openButtonPressed)];
     UIBarButtonItem *mapItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(openMap)];
@@ -85,43 +83,57 @@ bool isFav = false;
     
     NSSet *touches = [event allTouches];
     UITouch *touch = [touches anyObject];
-    CGPoint currentTouchPosition = [touch locationInView:self.tableView];
     
+    CGPoint currentTouchPosition = [touch locationInView:self.tableView];
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:currentTouchPosition];
-    NSLog(@"log before retrieving data::%@",[NSNumber numberWithBool:isFav]);
-         //   [favoriteBtn setBackgroundImage:[UIImage imageNamed:@"star-y.png"] forState:UIControlStateNormal];
-            if (isFav) {
-                [favoriteBtn setBackgroundImage:[UIImage imageNamed:@"star-g.png"] forState:UIControlStateNormal];
+    
+    PFObject *objectArray = [self.objects objectAtIndex:indexPath.row];
+
+        if (isFav) {
+           
+                [data setObject:@"0" forKey:[NSString stringWithFormat:@"%@",objectArray.objectId]];
+                [data writeToFile:path atomically:YES];
                 isFav = false;
             } else {
-                [favoriteBtn setBackgroundImage:[UIImage imageNamed:@"star-y.png"] forState:UIControlStateNormal];
-                [data setObject:@"1" forKey:[NSString stringWithFormat:@"%d",indexPath.row]];
+         
+                [data setObject:@"1" forKey:[NSString stringWithFormat:@"%@",objectArray.objectId]];
                 [data writeToFile:path atomically:YES];
                 isFav = true;
             }
     
-    //retrieve data from plist
-    
-    NSMutableDictionary *savedData = [[NSMutableDictionary alloc]initWithContentsOfFile:path];
-    BOOL boolVal;
-    NSLog(@"read th plist %@",savedData);
-    boolVal = [[savedData objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]]boolValue];
-    NSLog(@"boolVal:::: %d  and also indexpath: %ld",boolVal,(long)indexPath.row);
-   
-    [self updateAccessibilityForCell:[self.tableView cellForRowAtIndexPath:indexPath]];
-        [self addDataToCore];
+    [self addDataToCore:(id)sender forEvent:(UIEvent*)event];
 }
 
 - (void)updateAccessibilityForCell:(UITableViewCell*)cell
 {
-    // The cell's accessibilityValue is the Checkbox's accessibilityValue.
     cell.accessibilityValue = cell.accessoryView.accessibilityValue;
 }
 
--(void)addDataToCore {
+-(void)addDataToCore:(id)sender forEvent:(UIEvent*)event {
+
+    NSError * error = nil;
+    NSSet *touches = [event allTouches];
+    UITouch *touch = [touches anyObject];
     
+    CGPoint currentTouchPosition = [touch locationInView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:currentTouchPosition];
+    PFObject *currentObjectAtIndexPath = [self.objects objectAtIndex:indexPath.row];
+    
+    NSString *likeObjectId = [NSString stringWithFormat:@"%@",currentObjectAtIndexPath.objectId];
+    NSLog(@"like object id : %@",tempObjectId);
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Venues"];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"(objectId like[cd] %@)",likeObjectId]];
+    [request setFetchLimit:1];
+    NSUInteger count = [self.managedObjectContext countForFetchRequest:request error:&error];
+    if (count == NSNotFound)
+        // some error occurred
+        NSLog(@"some error occurred");
+        else if (count == 0)
+        { // no matching object - ADD newVenue to core
+            
+            NSLog(@"no matching object");
     Venues *newVenue = (Venues *)[NSEntityDescription insertNewObjectForEntityForName:@"Venues" inManagedObjectContext:self.managedObjectContext];
-    newVenue.objectId = tempMunicipality;
+    newVenue.objectId = tempObjectId;
     newVenue.name = tempHouseName;
     newVenue.isMyFavorite = [NSNumber numberWithBool:isFav];
     NSData *imageData = UIImageJPEGRepresentation(tempProfileImage,0.0);
@@ -129,11 +141,14 @@ bool isFav = false;
     TGFavoritesViewController *favoritesController = [[TGFavoritesViewController alloc]init];
     [favoritesController addViewController:self didFinishWithSave:YES];
     
-    NSError *error;
-    if (![self.managedObjectContext save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-    }
-    NSLog(@"record added succesfully %@",newVenue);
+                    NSError *error2;
+                if (![self.managedObjectContext save:&error2]) {
+                        NSLog(@"Whoops, couldn't save: %@", [error2 localizedDescription]);
+                }
+                        NSLog(@"record added succesfully %@",newVenue);
+        } else
+                //do nothing
+                NSLog(@"at least one matching object exists");
 }
 
 #pragma mark - UITableViewDelegate & UITableViewDataSource
@@ -153,21 +168,45 @@ bool isFav = false;
     return [self.objects count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView
+- (MainTableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
             object:(PFObject *)object{
     
-#warning check here if there are values equal to true (1) into plist
-    
     static NSString *simpleTableIdentifier = @"MainTableViewCell";
     cell = (MainTableViewCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    
     if (cell == nil)
     {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"MainTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
     
-    NSLog(@"pfobject????:%@",object);
+    NSMutableDictionary *savedData = [[NSMutableDictionary alloc]initWithContentsOfFile:path];
+    BOOL boolVal;
+    //    NSLog(@"read th plist %@",savedData);
+    boolVal = [[savedData objectForKey:[NSString stringWithFormat:@"%ld",(long)indexPath.row]]boolValue];
+    
+    //create favorite button programmatically
+    favoriteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    favoriteBtn.frame = CGRectMake(20.0f, 20.0f, 30.0f, 30.0f);
+    [favoriteBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [favoriteBtn setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
+    
+    for (id key in savedData) {
+        
+    //    NSLog(@"compare  %@  with  %@   and having %@",key,[object objectId],[savedData objectForKey:key]);
+   //     NSLog(@"bundle: key=%@, value=%@", key, [savedData objectForKey:key]);
+        if ([key isEqualToString:[object objectId]] && [[savedData objectForKey:key] isEqualToString:@"1"]) {
+            [favoriteBtn setBackgroundImage:[UIImage imageNamed:@"star-y.png"] forState:UIControlStateNormal];
+            NSLog(@"Match!!!!!!");
+        }
+        else
+               [favoriteBtn setBackgroundImage:[UIImage imageNamed:@"star-g.png"] forState:UIControlStateNormal];
+    }
+    
+    [favoriteBtn addTarget:self action:@selector(menuPressed:forEvent:) forControlEvents:UIControlEventTouchUpInside];
+    [self updateAccessibilityForCell:[self.tableView cellForRowAtIndexPath:indexPath]];
+
     PFImageView *profileImage = [[PFImageView alloc]init];
     profileImage.file = (PFFile*)object[@"image"];
     [profileImage loadInBackground];
@@ -202,23 +241,14 @@ bool isFav = false;
         cell.summerImg.alpha = 0.35;
     }
     
-    //create favorite button programmatically
-    favoriteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    favoriteBtn.frame = CGRectMake(20.0f, 20.0f, 30.0f, 30.0f);
-    [favoriteBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    [favoriteBtn setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
-    [favoriteBtn setTag:indexPath.row];
-
+    tempObjectId = [object objectId];
     tempMunicipality = object [@"municipality"];
     tempHouseName = object [@"name"];
     tempProfileImage = profileImage.image;
     
-    [favoriteBtn setBackgroundImage:[UIImage imageNamed:@"star-g.png"] forState:UIControlStateNormal];
-    [favoriteBtn addTarget:self action:@selector(menuPressed:forEvent:) forControlEvents:UIControlEventTouchUpInside];
     [cell addSubview:favoriteBtn];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    NSLog(@"database so far: %@ with tag %ld",tempHouseName,(long)favoriteBtn.tag);
     return cell;
 }
 

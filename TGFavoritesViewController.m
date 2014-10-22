@@ -15,6 +15,7 @@
 @implementation TGFavoritesViewController
 int count;
 UIImageView *footerView;
+FavoritesTableViewCell *favoriteCell;
 
 
 #pragma mark -UIViewController
@@ -91,6 +92,8 @@ UIImageView *footerView;
     cell.houseNameLabel.text = venue.name;
     UIImage *image = [UIImage imageWithData:[venue valueForKey:@"profileImage"]];
     cell.houseImage.image = image;
+    
+    NSLog(@"configuring cell ::: %@",venue);
     
 }
 
@@ -190,7 +193,8 @@ UIImageView *footerView;
             
         case NSFetchedResultsChangeUpdate:
             
-            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            [self configureCell:favoriteCell atIndexPath:indexPath];
+          //  [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             break;
             
         case NSFetchedResultsChangeMove:
