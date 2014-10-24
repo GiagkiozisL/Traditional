@@ -78,12 +78,15 @@
 		45789C4019E7DD70006F1450 /* FavoritesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45789C3E19E7DD70006F1450 /* FavoritesTableViewCell.xib */; };
 		45789C4519E7EA78006F1450 /* likedLabel.png in Resources */ = {isa = PBXBuildFile; fileRef = 45789C4319E7EA78006F1450 /* likedLabel.png */; };
 		45789C4619E7EA78006F1450 /* likedLabel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45789C4419E7EA78006F1450 /* likedLabel@2x.png */; };
+		45851F4019FA7A3E0036F730 /* TGEventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45851F3F19FA7A3E0036F730 /* TGEventDetailViewController.m */; };
 		458E004119ED17DE00D5A20D /* empty_view.png in Resources */ = {isa = PBXBuildFile; fileRef = 458E004019ED17DE00D5A20D /* empty_view.png */; };
 		458E004319ED18B000D5A20D /* empty_view@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 458E004219ED18B000D5A20D /* empty_view@2x.png */; };
 		4597B6E819EC2592004DB81D /* NilTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4597B6E719EC2592004DB81D /* NilTableView.m */; };
 		45A2148F19E6853000352332 /* body.png in Resources */ = {isa = PBXBuildFile; fileRef = 45A2148E19E6853000352332 /* body.png */; };
 		45CD481E19EA876000DFD779 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45CD481D19EA876000DFD779 /* Foundation.framework */; };
 		45CD482019EA87D800DFD779 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45CD481F19EA87D800DFD779 /* CoreFoundation.framework */; };
+		45DA475419F803E500421480 /* GeoPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DA475319F803E500421480 /* GeoPointAnnotation.m */; };
+		45DA475719F851B000421480 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DA475619F851B000421480 /* Reachability.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -188,6 +191,8 @@
 		45789C3E19E7DD70006F1450 /* FavoritesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoritesTableViewCell.xib; sourceTree = "<group>"; };
 		45789C4319E7EA78006F1450 /* likedLabel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = likedLabel.png; sourceTree = "<group>"; };
 		45789C4419E7EA78006F1450 /* likedLabel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "likedLabel@2x.png"; sourceTree = "<group>"; };
+		45851F3E19FA7A3E0036F730 /* TGEventDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGEventDetailViewController.h; sourceTree = "<group>"; };
+		45851F3F19FA7A3E0036F730 /* TGEventDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGEventDetailViewController.m; sourceTree = "<group>"; };
 		458E004019ED17DE00D5A20D /* empty_view.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = empty_view.png; sourceTree = "<group>"; };
 		458E004219ED18B000D5A20D /* empty_view@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "empty_view@2x.png"; sourceTree = "<group>"; };
 		4597B6E619EC2592004DB81D /* NilTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NilTableView.h; sourceTree = "<group>"; };
@@ -195,6 +200,10 @@
 		45A2148E19E6853000352332 /* body.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = body.png; sourceTree = "<group>"; };
 		45CD481D19EA876000DFD779 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		45CD481F19EA87D800DFD779 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		45DA475219F803E500421480 /* GeoPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoPointAnnotation.h; sourceTree = "<group>"; };
+		45DA475319F803E500421480 /* GeoPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoPointAnnotation.m; sourceTree = "<group>"; };
+		45DA475519F851B000421480 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		45DA475619F851B000421480 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -339,6 +348,8 @@
 				452F9B2119E48EF6009715CB /* TGWishListViewController.m */,
 				45426C5019E528F000EDB9E9 /* TGFavoritesViewController.h */,
 				45426C5119E528F000EDB9E9 /* TGFavoritesViewController.m */,
+				45851F3E19FA7A3E0036F730 /* TGEventDetailViewController.h */,
+				45851F3F19FA7A3E0036F730 /* TGEventDetailViewController.m */,
 			);
 			name = Controllers;
 			path = ..;
@@ -431,6 +442,10 @@
 				45426FCA19E5517100EDB9E9 /* Comms.m */,
 				45071CCC19F10D8200A51CBC /* PListHelper.h */,
 				45071CCD19F10D8200A51CBC /* PListHelper.m */,
+				45DA475219F803E500421480 /* GeoPointAnnotation.h */,
+				45DA475319F803E500421480 /* GeoPointAnnotation.m */,
+				45DA475519F851B000421480 /* Reachability.h */,
+				45DA475619F851B000421480 /* Reachability.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -585,8 +600,10 @@
 			files = (
 				4525EA6419E3C9AB0009BADE /* AppDelegate.m in Sources */,
 				4525EAF719E42D3D0009BADE /* TGMapViewController.m in Sources */,
+				45DA475419F803E500421480 /* GeoPointAnnotation.m in Sources */,
 				4525EAF519E42D3D0009BADE /* TGSideMenuViewController.m in Sources */,
 				4525EAB019E3D9980009BADE /* MainTableViewCell.m in Sources */,
+				45851F4019FA7A3E0036F730 /* TGEventDetailViewController.m in Sources */,
 				45071CCE19F10D8200A51CBC /* PListHelper.m in Sources */,
 				4597B6E819EC2592004DB81D /* NilTableView.m in Sources */,
 				4525EA6119E3C9AB0009BADE /* main.m in Sources */,
@@ -596,6 +613,7 @@
 				45789C3B19E7D0B9006F1450 /* Venues.m in Sources */,
 				45789C3F19E7DD70006F1450 /* FavoritesTableViewCell.m in Sources */,
 				45426C5719E539FE00EDB9E9 /* ILTranslucentView.m in Sources */,
+				45DA475719F851B000421480 /* Reachability.m in Sources */,
 				4525EAF619E42D3D0009BADE /* TGMainViewController.m in Sources */,
 				4525EA6719E3C9AB0009BADE /* Traditional.xcdatamodeld in Sources */,
 				45426FCB19E5517100EDB9E9 /* Comms.m in Sources */,
