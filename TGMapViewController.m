@@ -7,13 +7,12 @@
 #import "GeoPointAnnotation.h"
 #import "AppDelegate.h"
 #import "ILTranslucentView.h"
-#import "TGEventDetailViewController.h"
+#import "TGDetailTableViewController.h"
 
 @interface TGMapViewController ()
 
 @property (nonatomic, strong) CLLocation *location;
-//@property (nonatomic, strong) CLLocationDistance radius;
-//@property (nonatomic, strong) NSString *className;
+
 @end
 
 @implementation TGMapViewController
@@ -22,6 +21,7 @@
 @synthesize locationManager;
 @synthesize segmentAccurancy;
 
+NSString *tempTitle;
 double selectedSegmentValue = 200.00;
 GeoPointAnnotation *geoPointAnnotation;
 ILTranslucentView *ilTransLucentView;
@@ -125,8 +125,8 @@ ILTranslucentView *ilTransLucentView;
     
     MKCoordinateRegion region;
     MKCoordinateSpan span;
-    span.latitudeDelta = 2.925;
-    span.longitudeDelta = 2.925;
+    span.latitudeDelta = 5.925;
+    span.longitudeDelta = 5.925;
     CLLocationCoordinate2D locationCoordinate;
     locationCoordinate.latitude = aUserLocation.coordinate.latitude;
     locationCoordinate.longitude = aUserLocation.coordinate.longitude;
@@ -139,10 +139,6 @@ ILTranslucentView *ilTransLucentView;
 
 -(MKAnnotationView *) mapView:(MKMapView *)aMapView viewForAnnotation:(id<MKAnnotation>)annotation {
    
-    //  fill 2 lines above when implement the detail view for each pin
-    TGEventDetailViewController *detailView = [[TGEventDetailViewController alloc]init];
-    detailView = [self.storyboard instantiateViewControllerWithIdentifier:@"TGEventDetailViewController"];
-    
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
         return nil;
     }
@@ -152,7 +148,7 @@ ILTranslucentView *ilTransLucentView;
     if ([annotation isKindOfClass:[GeoPointAnnotation class]]) {
         MKPinAnnotationView *pinView = (MKPinAnnotationView*)[aMapView dequeueReusableAnnotationViewWithIdentifier:pinIdentifier];
         
-        if(!pinView) {
+       if(!pinView) {
             pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pinIdentifier];
         }
         else {
@@ -160,44 +156,12 @@ ILTranslucentView *ilTransLucentView;
         }
         pinView.pinColor = [(GeoPointAnnotation *)annotation pinColor];
         pinView.canShowCallout = YES;
-        pinView.image = [UIImage imageNamed:@"facebook.png"];
         pinView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeInfoDark];
         
         return pinView;
     }
     return nil;
 }
-
--(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
-    TGEventDetailViewController *eventDetail = (TGEventDetailViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"TGEventDetailViewController"];
-    
-    geoPointAnnotation = (GeoPointAnnotation*)view.annotation;
-    
-    //retrieve object and image
-    PFObject *object = geoPointAnnotation.object;
-    PFQuery *query = [PFQuery queryWithClassName:@"Venues"];
-    [query getObjectInBackgroundWithId:object.objectId
-                                 block:^(PFObject *textdu, NSError *error) {
-                                     {
-                                         // do your thing with text
-                                         if (!error) {
-                                             PFFile *imageFile = [textdu objectForKey:@"image"];
-                                             [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-                                                 if (!error) {
-                                             //        eventDetail.eventImg.image = [UIImage imageWithData:data];
-                                             //        dataTemp = data;
-                                                 }
-                                             }];
-                                         }                                         }
-                                 }];
-    
-//    eventDetail.tempImage = [UIImage imageWithData:dataTemp];
-//    eventDetail.dateTxt = [NSString stringWithFormat:@"%@",geoPointAnnotation.subtitle];
-//    eventDetail.titleTxt = [NSString stringWithFormat:@"%@",geoPointAnnotation.title];
-//    eventDetail.descriptTxt = [object objectForKey:@"desciption"];
-    NSLog(@"%@ %@ %@",geoPointAnnotation.subtitle,geoPointAnnotation.title,[object objectForKey:@"desciption"]);
-   [[self navigationController] pushViewController:eventDetail animated:YES];
-      }
 
 #pragma mark - UIActions
 
@@ -222,10 +186,37 @@ ILTranslucentView *ilTransLucentView;
         default:
             break;
     }
-    
-    
     [self getCurrentLocation];
     [self updateLocations];
+}
+
+#pragma mark - UISegue
+
+
+-(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control{
+    
+    geoPointAnnotation = (GeoPointAnnotation*)view.annotation;
+    
+    tempTitle = geoPointAnnotation.title;
+   
+        [self performSegueWithIdentifier:@"Details" sender:self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Check that the segue is our showPinDetails-segue
+    if ([segue.identifier isEqualToString:@"Details"]) {
+        
+        
+      //  TGDetailTableViewController *detail = (TGDetailTableViewController *)segue.destinationViewController;
+        UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
+        TGDetailTableViewController *controller = (TGDetailTableViewController *)navController.topViewController;
+        
+        int xi = 7;
+        
+        [controller setMyValue:xi];
+         NSLog(@"temp title 1 :%@",tempTitle);
+        controller.tempName = [NSString stringWithFormat:@"%@",tempTitle];
+    }
 }
 
 @end

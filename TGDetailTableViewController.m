@@ -1,15 +1,45 @@
 
-#import "TGEventDetailViewController.h"
+#import "TGDetailTableViewController.h"
 
-@interface TGEventDetailViewController ()
+@interface TGDetailTableViewController ()
 
 @end
 
-@implementation TGEventDetailViewController
+@implementation TGDetailTableViewController
+@synthesize backgroundImg;
+@synthesize starImg;
+@synthesize season1Img;
+@synthesize season2Img;
+@synthesize season3Img;
+@synthesize season4Img;
+@synthesize detailView;
+@synthesize guesthouseName;
+@synthesize price;
+@synthesize guestHouseKind;
+@synthesize roomsNumber;
+@synthesize owner;
+@synthesize star1;
+@synthesize star2;
+@synthesize star3;
+@synthesize star4;
+@synthesize star5;
+@synthesize seaImg;
+@synthesize mountainImg;
+@synthesize ownerPic;
+@synthesize myValue;
+@synthesize tempName;
+
+-(void)viewWillAppear:(BOOL)animated {
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.navigationItem.title = @"Detail View";
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    NSLog(@"my value integer is %d  %@",myValue,tempName);
+    guesthouseName.text = [NSString stringWithFormat:@"%@",self.tempName];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -23,18 +53,8 @@
 }
 
 #pragma mark - Table view data source
+// null data source cause of static cells already painted in storyboard
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
-}
 
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -89,5 +109,9 @@
     // Pass the selected object to the new view controller.
 }
 */
+#pragma mark - UIActions
 
+- (IBAction)backBtn:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end
