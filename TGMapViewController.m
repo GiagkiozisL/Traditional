@@ -22,9 +22,19 @@
 @synthesize segmentAccurancy;
 
 NSString *tempTitle;
+NSString *tempRegion;
+NSData *tempData;
+NSData *tempData2;
+UIImage *tempImage;
+NSString *tempOwnersObjId;
+NSString *tempOwner;
+NSString *tempLodgingType;
+NSString *tempRoomsNumber;
+
 double selectedSegmentValue = 200.00;
 GeoPointAnnotation *geoPointAnnotation;
 ILTranslucentView *ilTransLucentView;
+TGDetailTableViewController *controller;
 
 #pragma mark - UIViewController
 
@@ -35,11 +45,12 @@ ILTranslucentView *ilTransLucentView;
     ilTransLucentView.clipsToBounds = YES;
     ilTransLucentView.alpha = 0.6;
     [self.mapView addSubview:ilTransLucentView];
+    
 }
 
 -(void)viewDidLoad {
     [super viewDidLoad];
-    
+    tempData = nil;
     mapView.delegate = self;
     self.locationManager = [[CLLocationManager alloc] init];
     [self updateLocations];
@@ -163,6 +174,104 @@ ILTranslucentView *ilTransLucentView;
     return nil;
 }
 
+-(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control{
+    NSLog(@"annotationVIEW");
+    geoPointAnnotation = (GeoPointAnnotation*)view.annotation;
+    //retrieve object and image
+    PFObject *object = geoPointAnnotation.object;
+    PFQuery *query = [PFQuery queryWithClassName:@"Venues"];
+    [query getObjectInBackgroundWithId:object.objectId
+                                 block:^(PFObject *objectVenue, NSError *error) {
+                                     {
+                                         // do your thing with text
+                                         if (!error) {
+                                             NSLog(@"objId2:%@",[objectVenue objectForKey:@"lodging_type"]);
+                                             tempOwnersObjId = [objectVenue [@"objectIdentifier"]objectId];
+                                             controller.tempOwnersObjId = [NSString stringWithFormat:@"%@",tempOwnersObjId];
+                                             tempLodgingType = [NSString stringWithFormat:@"%@",[objectVenue objectForKey:@"lodging_type"]];
+                                             tempRoomsNumber = [NSString stringWithFormat:@"%@",[objectVenue objectForKey:@"rooms"]];
+                                             controller.tempLodgingType = [NSString stringWithFormat:@"%@",tempLodgingType];
+                                             PFFile *imageFile = [objectVenue objectForKey:@"image"];
+                                             [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+                                                 if (!error) {
+                                                     controller.backgroundImg.image = [UIImage imageWithData:data];
+                                                     tempData = data;
+                                                 }
+                                             }];
+                                         }                                         }
+                                     
+                                     //second query
+                                     PFQuery *query2 = [PFQuery queryWithClassName:@"Owners"];
+                                     
+                                     [query2 whereKey:@"objectId" equalTo:tempOwnersObjId];
+                                     
+                                     [query2 findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                                         if (!error) {
+                                             for (PFObject *object in objects) {
+                                                 tempOwner = [NSString stringWithFormat:@"%@",[object objectForKey:@"full_username"]];
+                                                 
+                                                 PFFile *profilePic = [object objectForKey:@"profilPic"];
+                                                 [profilePic getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+                                                     if (!error) {
+                                                         
+                                                         controller.ownerPic.image = [UIImage imageWithData:data];
+                                                         tempData2 = data;
+                                                     }
+                                                 }];
+                                             }
+                                         } else {
+                                             // Log details of the failure
+                                             NSLog(@"Error: %@ %@", error, [error userInfo]);
+                                         }
+                                     }];
+                                     [self performSegueWithIdentifier:@"Details" sender:self];
+
+                                 }];
+    
+    controller.tempImage = [UIImage imageWithData:tempData];
+    tempTitle = geoPointAnnotation.title;
+    tempRegion = geoPointAnnotation.subtitle;
+}
+
+
+- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views {
+    MKAnnotationView *aV;
+    
+    for (aV in views) {
+        // Don't pin drop if annotation is user location
+        if ([aV.annotation isKindOfClass:[MKUserLocation class]]) {
+            continue;
+        }
+        // Check if current annotation is inside visible map rect, else go to next one
+        MKMapPoint point =  MKMapPointForCoordinate(aV.annotation.coordinate);
+        if (!MKMapRectContainsPoint(self.mapView.visibleMapRect, point)) {
+            continue;
+        }
+        CGRect endFrame = aV.frame;
+        // Move annotation out of view
+        aV.frame = CGRectMake(aV.frame.origin.x, aV.frame.origin.y - self.view.frame.size.height, aV.frame.size.width, aV.frame.size.height);
+        
+        // Animate drop
+        [UIView animateWithDuration:0.5 delay:0.04*[views indexOfObject:aV] options: UIViewAnimationOptionCurveLinear animations:^{
+            aV.frame = endFrame;
+            // Animate squash
+        }completion:^(BOOL finished){
+            if (finished) {
+                [UIView animateWithDuration:0.05 animations:^{
+                    aV.transform = CGAffineTransformMakeScale(1.0, 0.8);
+                    
+                }completion:^(BOOL finished){
+                    if (finished) {
+                        [UIView animateWithDuration:0.1 animations:^{
+                            aV.transform = CGAffineTransformIdentity;
+                        }];
+                    }
+                }];
+            }
+        }];
+    }
+}
+
 #pragma mark - UIActions
 
 - (IBAction)AccurancyChanged:(id)sender {
@@ -192,30 +301,17 @@ ILTranslucentView *ilTransLucentView;
 
 #pragma mark - UISegue
 
-
--(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control{
-    
-    geoPointAnnotation = (GeoPointAnnotation*)view.annotation;
-    
-    tempTitle = geoPointAnnotation.title;
-   
-        [self performSegueWithIdentifier:@"Details" sender:self];
-}
-
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Check that the segue is our showPinDetails-segue
+    NSLog(@"prepareForSegue");
     if ([segue.identifier isEqualToString:@"Details"]) {
         
-        
-      //  TGDetailTableViewController *detail = (TGDetailTableViewController *)segue.destinationViewController;
         UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
-        TGDetailTableViewController *controller = (TGDetailTableViewController *)navController.topViewController;
-        
-        int xi = 7;
-        
-        [controller setMyValue:xi];
-         NSLog(@"temp title 1 :%@",tempTitle);
+        controller = (TGDetailTableViewController *)navController.topViewController;
+        controller.tempRoomsNumber = [NSString stringWithFormat:@"%@",tempRoomsNumber];
+        controller.tempLodgingType = [NSString stringWithFormat:@"%@",tempLodgingType];
         controller.tempName = [NSString stringWithFormat:@"%@",tempTitle];
+        controller.tempRegion = [NSString stringWithFormat:@"%@",tempRegion];
+        controller.tempImage = [UIImage imageWithData:tempData];
     }
 }
 

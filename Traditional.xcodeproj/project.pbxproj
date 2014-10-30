@@ -74,6 +74,7 @@
 		45426FCB19E5517100EDB9E9 /* Comms.m in Sources */ = {isa = PBXBuildFile; fileRef = 45426FCA19E5517100EDB9E9 /* Comms.m */; };
 		45426FCE19E5561C00EDB9E9 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45426FCD19E5561C00EDB9E9 /* ParseFacebookUtils.framework */; };
 		4551223319F0021B00B44166 /* TableData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4551223219F0021B00B44166 /* TableData.plist */; };
+		4565D31B1A02C36700DC3EE1 /* DefaultTg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4565D31A1A02C36700DC3EE1 /* DefaultTg.png */; };
 		45789C3B19E7D0B9006F1450 /* Venues.m in Sources */ = {isa = PBXBuildFile; fileRef = 45789C3A19E7D0B9006F1450 /* Venues.m */; };
 		45789C3F19E7DD70006F1450 /* FavoritesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 45789C3D19E7DD70006F1450 /* FavoritesTableViewCell.m */; };
 		45789C4019E7DD70006F1450 /* FavoritesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45789C3E19E7DD70006F1450 /* FavoritesTableViewCell.xib */; };
@@ -208,6 +209,7 @@
 		45426FCA19E5517100EDB9E9 /* Comms.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comms.m; sourceTree = "<group>"; };
 		45426FCD19E5561C00EDB9E9 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
 		4551223219F0021B00B44166 /* TableData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TableData.plist; sourceTree = "<group>"; };
+		4565D31A1A02C36700DC3EE1 /* DefaultTg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefaultTg.png; sourceTree = "<group>"; };
 		45789C3919E7D0B9006F1450 /* Venues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Venues.h; sourceTree = "<group>"; };
 		45789C3A19E7D0B9006F1450 /* Venues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Venues.m; sourceTree = "<group>"; };
 		45789C3C19E7DD70006F1450 /* FavoritesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesTableViewCell.h; sourceTree = "<group>"; };
@@ -404,6 +406,7 @@
 		4525EAA719E3D4B10009BADE /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				4565D31A1A02C36700DC3EE1 /* DefaultTg.png */,
 				4592F51819FE5D38009F6F9B /* backBtn.png */,
 				4592F51919FE5D38009F6F9B /* backBtn@2x.png */,
 				4592F50A19FE4970009F6F9B /* mountain.png */,
@@ -619,6 +622,7 @@
 				4525EAC819E3DA6C0009BADE /* summer-y.png in Resources */,
 				4525EA6D19E3C9AB0009BADE /* Main.storyboard in Resources */,
 				4525EAC019E3DA530009BADE /* spring-w.png in Resources */,
+				4565D31B1A02C36700DC3EE1 /* DefaultTg.png in Resources */,
 				4525EAB519E3D9FE0009BADE /* profile-stats-bg.png in Resources */,
 				4525EACC19E3DA820009BADE /* winter-y.png in Resources */,
 				4525EAD019E3DA900009BADE /* spring-y.png in Resources */,

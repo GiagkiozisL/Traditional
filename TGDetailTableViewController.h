@@ -1,5 +1,6 @@
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 
 @interface TGDetailTableViewController : UITableViewController <UINavigationControllerDelegate>
 
@@ -23,9 +24,15 @@
 @property (strong, nonatomic) IBOutlet UIImageView *seaImg;
 @property (strong, nonatomic) IBOutlet UIImageView *mountainImg;
 @property (strong, nonatomic) IBOutlet UIImageView *ownerPic;
+@property (strong, nonatomic) IBOutlet UILabel *region;
 
 @property(nonatomic) NSInteger myValue;
 @property(nonatomic) NSString *tempName;
+@property(nonatomic) NSString *tempRegion;
+@property(nonatomic) UIImage *tempImage;
+@property(nonatomic) NSString *tempOwnersObjId;
+@property(nonatomic) NSString *tempLodgingType;
+@property(nonatomic) NSString *tempRoomsNumber;
 - (IBAction)backBtn:(id)sender;
 
 @end

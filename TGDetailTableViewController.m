@@ -26,25 +26,40 @@
 @synthesize seaImg;
 @synthesize mountainImg;
 @synthesize ownerPic;
-@synthesize myValue;
-@synthesize tempName;
+@synthesize region;
 
--(void)viewWillAppear:(BOOL)animated {
-    
-}
+@synthesize tempName;
+@synthesize tempRegion;
+@synthesize tempImage;
+@synthesize tempOwnersObjId;
+@synthesize tempLodgingType;
+@synthesize tempRoomsNumber;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSLog(@"DETAILLLLLLLLL::::::viewDidLoad");
+    detailView.layer.cornerRadius = 10.0;
+    detailView.clipsToBounds = YES;
+    
+    ownerPic.layer.cornerRadius = 28.0;
+    ownerPic.clipsToBounds = YES;
+    
+    
     self.navigationItem.title = @"Detail View";
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    NSLog(@"my value integer is %d  %@",myValue,tempName);
-    guesthouseName.text = [NSString stringWithFormat:@"%@",self.tempName];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    guesthouseName.text = [NSString stringWithFormat:@"%@",tempName];
+    region.text = [NSString stringWithFormat:@"%@",tempRegion];
+    guestHouseKind.text = [NSString stringWithFormat:@"- %@ -",tempLodgingType];
+    roomsNumber.text = [NSString stringWithFormat:@"%@ rooms",tempRoomsNumber];
+
+}
+-(void)viewDidDisappear:(BOOL)animated {
+    NSLog(@"viewDidDisappear");
+    backgroundImg.image = nil;
+    tempLodgingType = nil;
+    tempRoomsNumber = nil;
+    owner.text = nil;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,63 +67,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
-// null data source cause of static cells already painted in storyboard
-
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 #pragma mark - UIActions
 
 - (IBAction)backBtn:(id)sender {

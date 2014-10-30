@@ -119,12 +119,12 @@
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="429" id="X15-ig-J0f">
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="X15-ig-J0f" id="59c-tA-yII">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.84999999999999987" contentMode="center" tableViewCell="X15-ig-J0f" id="59c-tA-yII">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="alexandra2.png" id="IDq-yc-F3a">
-                                                    <rect key="frame" x="0.0" y="0.0" width="1600" height="2109"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="370"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" alpha="0.70000000000000007" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fall-w.png" id="r7G-Hr-ah4">
                                                     <rect key="frame" x="247" y="21" width="26" height="26"/>
@@ -148,7 +148,7 @@
                                                     <subviews>
                                                         <tableViewCell alpha="0.34999999999999998" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Scj-bF-CaQ">
                                                             <rect key="frame" x="15" y="55" width="305" height="1"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Scj-bF-CaQ" id="fe9-1E-KuD">
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                             </tableViewCellContentView>
@@ -156,7 +156,7 @@
                                                         </tableViewCell>
                                                         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="47" id="Jfq-s1-0Ue">
                                                             <rect key="frame" x="0.0" y="0.0" width="320" height="47"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jfq-s1-0Ue" id="uRj-md-MmC">
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
@@ -179,7 +179,7 @@
                                                         </tableViewCell>
                                                         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="xyc-c6-cc8">
                                                             <rect key="frame" x="0.0" y="64" width="320" height="128"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xyc-c6-cc8" id="9xa-7Y-aVb">
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
@@ -190,8 +190,8 @@
                                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rooms number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0Cp-BN-ixP">
-                                                                        <rect key="frame" x="22" y="23" width="227" height="21"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rooms number" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0Cp-BN-ixP">
+                                                                        <rect key="frame" x="22" y="23" width="117" height="21"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <fontDescription key="fontDescription" name="EuphemiaUCAS" family="Euphemia UCAS" pointSize="11"/>
                                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -201,14 +201,10 @@
                                                                         <rect key="frame" x="18" y="51" width="60" height="60"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     </imageView>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Zwe-LE-CZb">
-                                                                        <rect key="frame" x="21" y="54" width="54" height="54"/>
-                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    </imageView>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Ioannou" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eFf-Jo-c2Q">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ioannis Vergos" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eFf-Jo-c2Q">
                                                                         <rect key="frame" x="91" y="53" width="138" height="21"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                        <fontDescription key="fontDescription" name="EuphemiaUCAS-Bold" family="Euphemia UCAS" pointSize="14"/>
                                                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
@@ -240,6 +236,10 @@
                                                                         <rect key="frame" x="268" y="28" width="37" height="37"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     </imageView>
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Zwe-LE-CZb">
+                                                                        <rect key="frame" x="21" y="54" width="54" height="54"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    </imageView>
                                                                 </subviews>
                                                             </tableViewCellContentView>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -251,9 +251,17 @@
                                                     <rect key="frame" x="171" y="21" width="26" height="26"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Undefined Region" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="C1D-GW-GW2">
+                                                    <rect key="frame" x="145" y="199" width="167" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="EuphemiaUCAS-Italic" family="Euphemia UCAS" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="50" id="8Xv-5i-2Yi">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -313,6 +321,7 @@
                         <outlet property="owner" destination="eFf-Jo-c2Q" id="UFg-Lx-wVa"/>
                         <outlet property="ownerPic" destination="Zwe-LE-CZb" id="xuj-3z-nTF"/>
                         <outlet property="price" destination="Zcc-20-mdb" id="cVS-Fd-Sfb"/>
+                        <outlet property="region" destination="C1D-GW-GW2" id="RWB-uo-Ouw"/>
                         <outlet property="roomsNumber" destination="0Cp-BN-ixP" id="WS4-pu-wY1"/>
                         <outlet property="seaImg" destination="Ql7-Pf-cGc" id="bOO-VD-LXg"/>
                         <outlet property="season1Img" destination="4bf-cm-aih" id="bJT-yD-Lxg"/>
